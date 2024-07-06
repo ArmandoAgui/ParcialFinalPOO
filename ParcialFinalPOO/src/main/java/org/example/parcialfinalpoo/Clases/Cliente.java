@@ -1,12 +1,14 @@
 package org.example.parcialfinalpoo.Clases;
 
 public class Cliente {
-    private String nombre;
+    private int id;
+    private String nombreCompleto;
     private String direccion;
     private String telefono;
 
-    public Cliente(String nombre, String direccion, String telefono) {
-        this.nombre = nombre;
+    public Cliente(int id, String nombreCompleto, String direccion, String telefono) {
+        this.id = id;
+        this.nombreCompleto = nombreCompleto;
         this.direccion = direccion;
         this.telefono = telefono;
     }
@@ -14,27 +16,20 @@ public class Cliente {
     public Cliente() {
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getId() {
+        return id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
+    public String getNombreCompleto() { return nombreCompleto; }
+    public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
+    public String getDireccion() { return direccion; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
 }
