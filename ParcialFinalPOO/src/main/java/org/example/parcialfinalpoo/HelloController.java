@@ -1,5 +1,6 @@
 package org.example.parcialfinalpoo;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -28,9 +29,12 @@ public class HelloController {
     private TextField deletedNoCardText; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Elemento utilizado en la eliminacion del numero de tarjeta
     @FXML
     private TextField idRepoA; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte A
-    /*Faltan rangos de fechas
-
-     */
+    @FXML
+    private DatePicker dateFechaInicioA;  //00144723 -> En este campo es donde se selecciona la fecha inicial para qenerar el reporte tipo A
+    @FXML
+    private DatePicker DateFechaFinA;  //00144723 -> En este campo es donde se selecciona la fecha fina para qenerar el reporte tipo A
+    @FXML
+    private Label lblErrorReporteA;  //00144723 -> Este label es para mostrar un mensaje de que uno o más campos estan vacios al querer generar un reporte.
     @FXML
     private TextField idRepoB; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte B
     @FXML
@@ -42,4 +46,10 @@ public class HelloController {
     @FXML
     private TextField facilitadorRepoD; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte D
 
+
+    //Reporte A.
+    @FXML
+    void generarReporteA(ActionEvent event) {
+
+    }
 }
