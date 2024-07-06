@@ -1,16 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.parcialfinalpoo.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
+         <children>
+            <Label text="Banco Central de Niogonia (BCN)" textFill="#0f044c">
+               <font>
+                  <Font name="Candara" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="74.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="20.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+         <VBox.margin>
+            <Insets top="-90.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="600.0">
+         <children>
+            <TitledPane alignment="CENTER" expanded="false" prefHeight="200.0" prefWidth="200.0" text="Gestor de Clientes" textFill="#141e61" underline="true">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Agregar cliente">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Nombre Completo:" />
+                                    <TextField />
+                                    <Label text="Direccion:" />
+                                    <TextField />
+                                    <Label text="Telefono:" />
+                                    <TextField layoutX="20.0" layoutY="80.0" />
+                                 </children>
+                              </VBox>
+                           </content></TitledPane>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar cliente">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></TitledPane>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar cliente">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></TitledPane>
+                     </children></VBox>
+               </content></TitledPane>
+            <TitledPane alignment="CENTER" expanded="false" layoutX="20.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Gestor de Tarjetas" textFill="#141e61" underline="true">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Agregar tarjeta">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Numero de tarjeta:" />
+                                    <TextField />
+                                    <Label text="Fecha de expiracion:" />
+                                    <TextField />
+                                    <Label text="Tipo:" />
+                                    <TextField layoutX="20.0" layoutY="80.0" />
+                                    <Label layoutX="20.0" layoutY="106.0" text="Facilitador:" />
+                                    <TextField layoutX="20.0" layoutY="124.0" />
+                                    <Label layoutX="20.0" layoutY="149.0" text="Cliente:" />
+                                    <TextField layoutX="20.0" layoutY="167.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </TitledPane>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar cliente">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TitledPane>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar cliente">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TitledPane>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane alignment="CENTER" expanded="false" prefWidth="200.0" text="Gestion de transacciones" textFill="#141e61" underline="true">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </TitledPane>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
 </VBox>
