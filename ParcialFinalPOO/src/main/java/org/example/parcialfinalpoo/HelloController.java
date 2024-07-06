@@ -21,4 +21,6 @@ public class HelloController {
     private TextField companyCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.
     @FXML
     private TextField clientCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.
+
+
 }
