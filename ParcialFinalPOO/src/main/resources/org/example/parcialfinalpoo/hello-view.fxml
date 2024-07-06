@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.ReportController">
    <children>
       <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
          <children>
@@ -50,7 +50,15 @@
                         <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar cliente">
                            <VBox.margin>
                               <Insets top="10.0" />
-                           </VBox.margin></TitledPane>
+                           </VBox.margin>
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Nombre que desea eliminar:" />
+                                    <TextField />
+                                 </children>
+                              </VBox>
+                           </content></TitledPane>
                         <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar cliente">
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -70,21 +78,29 @@
                                     <Label text="Fecha de expiracion:" />
                                     <TextField fx:id="dateCardField" />
                                     <Label text="Tipo:" />
-                                    <TextField fx:id="typeCardField" layoutX="20.0" layoutY="80.0" />
+                                    <ComboBox fx:id="typeCardField" prefWidth="150.0" />
                                     <Label layoutX="20.0" layoutY="106.0" text="Facilitador:" />
-                                    <TextField fx:id="companyCardField" layoutX="20.0" layoutY="124.0" />
+                                    <ComboBox fx:id="companyCardField" layoutX="20.0" layoutY="124.0" prefWidth="150.0" />
                                     <Label layoutX="20.0" layoutY="149.0" text="Cliente:" />
                                     <TextField fx:id="clientCardField" layoutX="20.0" layoutY="167.0" />
                                  </children>
                               </VBox>
                            </content>
                         </TitledPane>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar cliente">
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar tarjeta">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="No. cuenta que desea eliminar:" />
+                                    <TextField fx:id="deletedNoCardText" />
+                                 </children>
+                              </VBox>
+                           </content>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TitledPane>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar cliente">
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar tarjeta">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -93,10 +109,66 @@
                   </VBox>
                </content>
             </TitledPane>
-            <TitledPane alignment="CENTER" expanded="false" prefWidth="200.0" text="Gestion de transacciones" textFill="#141e61" underline="true">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+            <TitledPane alignment="CENTER" expanded="false" prefHeight="200.0" prefWidth="200.0" text="Gestor de transacciones" textFill="#141e61" underline="true">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Reporte A">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="idRepoA" text="ID Cliente:" />
+                                    <TextField />
+                                    <Label layoutX="20.0" layoutY="20.0" text="Intervalo de fechas:" />
+                                 </children>
+                              </VBox>
+                           </content></TitledPane>
+                        <TitledPane expanded="false" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" text="Reporte B">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="idRepoB" text="ID Cliente:" />
+                                    <TextField />
+                                    <Label fx:id="mesRepoB" layoutX="20.0" layoutY="20.0" text="Mes:" />
+                                    <TextField layoutX="20.0" layoutY="37.0" />
+                                    <Label fx:id="anioRepoB" layoutX="20.0" layoutY="63.0" text="Año:" />
+                                    <TextField layoutX="20.0" layoutY="80.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TitledPane>
+                        <TitledPane expanded="false" layoutX="20.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" text="Reporte C">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="idRepoC" text="ID Cliente:" />
+                                    <TextField />
+                                 </children>
+                              </VBox>
+                           </content>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TitledPane>
+                        <TitledPane expanded="false" layoutX="20.0" layoutY="235.0" prefHeight="200.0" prefWidth="200.0" text="Reporte D">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="facilitadorRepoD" text="Facilitador:" />
+                                    <ComboBox fx:id="cmbFacilitadorD" prefWidth="150.0" promptText="Seleccionar" />
+                                    <Button fx:id="btnGenerarD" mnemonicParsing="false" text="Generar Reporte" />
+                                 </children>
+                              </VBox>
+                           </content>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TitledPane>
+                     </children></VBox>
+               </content>
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
@@ -105,6 +177,14 @@
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="15.0" right="15.0" top="10.0" />
+         </VBox.margin>
+         <children>
+            <ListView fx:id="tarjetasListView" prefHeight="200.0" prefWidth="500.0" />
+         </children>
       </HBox>
    </children>
 </VBox>

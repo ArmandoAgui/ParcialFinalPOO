@@ -1,8 +1,7 @@
 package org.example.parcialfinalpoo;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class HelloController {
     @FXML
@@ -16,9 +15,31 @@ public class HelloController {
     @FXML
     private TextField dateCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.
     @FXML
-    private TextField typeCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.
+    private ComboBox<String> typeCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller. Con parametros "String" que almacenara el tipo de tarjeta.
     @FXML
-    private TextField companyCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.
+    private ComboBox<String> companyCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller. Con parametros "String" que almacenara el facilitador.
     @FXML
-    private TextField clientCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.
+    private TextField clientCardField; //00116223 -> Se le designa el nombre de los elementos de JavaFX dentro del controller.'
+    @FXML
+    private ListView<String> tarjetasListView; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Se encarga de presentar las tarjetas, con su informacion al momento de modificarla su informacion.
+    @FXML
+    private TextField deletedNameTextField; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Elemento utilizado dentro de la eliminacion de tarjetas
+    @FXML
+    private TextField deletedNoCardText; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Elemento utilizado en la eliminacion del numero de tarjeta
+    @FXML
+    private TextField idRepoA; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte A
+    /*Faltan rangos de fechas
+
+     */
+    @FXML
+    private TextField idRepoB; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte B
+    @FXML
+    private TextField mesRepoB; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte B
+    @FXML
+    private TextField anioRepoB; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte B
+    @FXML
+    private TextField idRepoC; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte C
+    @FXML
+    private TextField facilitadorRepoD; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte D
+
 }
