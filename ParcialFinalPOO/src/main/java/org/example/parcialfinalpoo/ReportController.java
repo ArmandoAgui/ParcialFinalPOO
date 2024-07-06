@@ -4,6 +4,7 @@ import javafx.fxml.FXML; // 00174323: Importar anotaciones de JavaFX para inyecc
 import javafx.fxml.Initializable; // 00174323: Importar interfaz para inicialización del controlador
 import javafx.scene.control.*; // 00174323: Importar clases de JavaFX para controles UI
 import java.io.BufferedWriter; // 00174323: Importar clase para escritura eficiente en archivos
+import java.io.File; // 00174323: Importar clase para manejo de archivos y directorios
 import java.io.FileWriter; // 00174323: Importar clase para escribir en archivos
 import java.io.IOException; // 00174323: Importar clase para manejo de excepciones de E/S
 import java.net.URL; // 00174323: Importar clase para manejo de URL
@@ -67,10 +68,16 @@ public class ReportController implements Initializable { // 00174323: Definir la
             statement.setString(1, facilitador); // 00174323: Asignar el valor del facilitador al parámetro en la consulta preparada
             ResultSet resultado = statement.executeQuery(); // 00174323: Ejecutar la consulta y obtener el resultado
 
+            // 00174323: Crear la carpeta "Reporte" si no existe
+            File carpetaReporte = new File("Reporte");
+            if (!carpetaReporte.exists()) { // 00174323: Verifica la existencia de la carpeta "Reporte" si no existe
+                carpetaReporte.mkdirs(); // 00174323: Crear la carpeta "Reporte" si no existe
+            }
+
             String nombreArchivo = "Reporte D" + " - " + java.time.LocalDateTime.now().toString().replace(':', '-'); // 00174323: Nombre del archivo de reporte con la letra del facilitador y fecha/hora actual
 
-            // 00174323: Crear un BufferedWriter para escribir en el archivo
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo + ".txt"))) {
+            // 00174323: Crear un BufferedWriter para escribir en el archivo dentro de la carpeta "Reporte"
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(carpetaReporte, nombreArchivo + ".txt")))) {
                 writer.write("Reporte de clientes que han realizado compras con facilitador " + facilitador + "\n\n"); // 00174323: Escribir encabezado del reporte
 
                 // 00174323: Iterar sobre los resultados y escribir en el archivo
