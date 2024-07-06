@@ -1,3 +1,4 @@
+DROP DATABASE parcialFinal
 CREATE DATABASE parcialFinal;
 USE parcialFinal;
 
@@ -97,21 +98,21 @@ INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2
 INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-13 22:00:00', 1300.10, 'Compra en Librería La Ceiba', 13);
 INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-14 23:00:00', 1400.50, 'Compra en Tienda de Ropa Zara', 14);
 INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-15 10:00:00', 1500.30, 'Compra en Tienda de Deportes Nike', 15);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-16 11:00:00', 1600.40, 'Compra en Tienda de Juguetes Juguetón', 1);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-17 12:00:00', 1700.25, 'Compra en Almacenes Sears', 2);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-18 13:00:00', 1800.15, 'Compra en Tienda de Zapatos Skechers', 3);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-19 14:00:00', 1900.50, 'Compra en Supermercado La Torre', 4);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-20 15:00:00', 2000.75, 'Compra en Tienda de Electrónicos Best Buy', 5);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-21 16:00:00', 2100.20, 'Compra en Farmacia La Buena', 6);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-22 17:00:00', 2200.10, 'Compra en Librería Casa del Libro', 7);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-23 18:00:00', 2300.50, 'Compra en Tienda de Ropa H&M', 8);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-24 19:00:00', 2400.30, 'Compra en Tienda de Deportes Under Armour', 9);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-25 20:00:00', 2500.40, 'Compra en Tienda de Juguetes Hasbro', 10);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-26 21:00:00', 2600.25, 'Compra en Almacenes Walmart', 11);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-27 22:00:00', 2700.15, 'Compra en Tienda de Zapatos Clarks', 12);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-28 23:00:00', 2800.50, 'Compra en Supermercado PriceSmart', 13);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-29 10:00:00', 2900.75, 'Compra en Tienda de Electrónicos Newegg', 14);
-INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-30 11:00:00', 3000.20, 'Compra en Farmacia Walmart', 15);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-16 11:00:00', 1600.40, 'Compra en Tienda de Juguetes Juguetón', 16);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-17 12:00:00', 1700.25, 'Compra en Almacenes Sears', 17);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-18 13:00:00', 1800.15, 'Compra en Tienda de Zapatos Skechers', 18);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-19 14:00:00', 1900.50, 'Compra en Supermercado La Torre', 19);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-20 15:00:00', 2000.75, 'Compra en Tienda de Electrónicos Best Buy', 20);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-21 16:00:00', 2100.20, 'Compra en Farmacia La Buena', 1);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-22 17:00:00', 2200.10, 'Compra en Librería Casa del Libro', 4);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-23 18:00:00', 2300.50, 'Compra en Tienda de Ropa H&M', 7);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-24 19:00:00', 2400.30, 'Compra en Tienda de Deportes Under Armour', 10);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-25 20:00:00', 2500.40, 'Compra en Tienda de Juguetes Hasbro', 13);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-26 21:00:00', 2600.25, 'Compra en Almacenes Walmart', 16);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-27 22:00:00', 2700.15, 'Compra en Tienda de Zapatos Clarks', 19);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-28 23:00:00', 2800.50, 'Compra en Supermercado PriceSmart', 1);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-29 10:00:00', 2900.75, 'Compra en Tienda de Electrónicos Newegg', 1);
+INSERT INTO Transacciones (fecha, montoTotal, descripcion, tarjetaId) VALUES ('2024-01-30 11:00:00', 3000.20, 'Compra en Farmacia Walmart', 1);
 
 -- Consulta de Facilitadores
 SELECT f.id, f.nombre
@@ -134,5 +135,14 @@ INNER JOIN Tarjetas t ON tr.tarjetaId = t.id
 INNER JOIN Facilitadores f ON t.facilitadorId = f.id
 INNER JOIN Clientes c ON t.clienteId = c.id;
 
+-- Reporte D
+-- Consulta para obtener clientes que han realizado compras con un facilitador de tarjeta específico
+SELECT c.id, c.nombreCompleto AS Cliente, COUNT(t.id) AS CantidadCompras, SUM(tr.montoTotal) AS TotalGastado, f.nombre AS Facilitador
+FROM Clientes c
+INNER JOIN Tarjetas t ON c.id = t.clienteId
+INNER JOIN Facilitadores f ON t.facilitadorId = f.id
+INNER JOIN Transacciones tr ON t.id = tr.tarjetaId
+WHERE t.facilitadorId = 1
+GROUP BY c.id, c.nombreCompleto;
 
 
