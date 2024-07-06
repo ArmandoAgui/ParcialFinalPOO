@@ -39,9 +39,9 @@
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <Label text="Nombre Completo:" />
-                                    <TextField />
+                                    <TextField fx:id="nameField" />
                                     <Label text="Direccion:" />
-                                    <TextField />
+                                    <TextField fx:id="adressField" />
                                     <Label text="Telefono:" />
                                     <TextField layoutX="20.0" layoutY="80.0" />
                                  </children>
@@ -66,15 +66,15 @@
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <Label text="Numero de tarjeta:" />
-                                    <TextField />
+                                    <TextField fx:id="numberCardField" />
                                     <Label text="Fecha de expiracion:" />
-                                    <TextField />
+                                    <TextField fx:id="dateCardField" />
                                     <Label text="Tipo:" />
-                                    <TextField layoutX="20.0" layoutY="80.0" />
+                                    <TextField fx:id="typeCardField" layoutX="20.0" layoutY="80.0" />
                                     <Label layoutX="20.0" layoutY="106.0" text="Facilitador:" />
-                                    <TextField layoutX="20.0" layoutY="124.0" />
+                                    <TextField fx:id="companyCardField" layoutX="20.0" layoutY="124.0" />
                                     <Label layoutX="20.0" layoutY="149.0" text="Cliente:" />
-                                    <TextField layoutX="20.0" layoutY="167.0" />
+                                    <TextField fx:id="clientCardField" layoutX="20.0" layoutY="167.0" />
                                  </children>
                               </VBox>
                            </content>
