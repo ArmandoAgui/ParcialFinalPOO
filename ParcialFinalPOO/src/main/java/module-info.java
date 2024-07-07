@@ -8,6 +8,7 @@ module org.example.parcialfinalpoo {
     requires java.sql;
 
 
+    opens org.example.parcialfinalpoo.Clases to javafx.base;
     opens org.example.parcialfinalpoo to javafx.fxml;
     exports org.example.parcialfinalpoo;
 }

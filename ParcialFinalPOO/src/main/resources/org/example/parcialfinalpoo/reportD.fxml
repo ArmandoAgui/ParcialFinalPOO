@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.parcialfinalpoo.ReportController"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox prefHeight="200.0" prefWidth="100.0">
+        <children>
+            <Label fx:id="facilitadorRepoD" text="Facilitador:" />
+            <ComboBox fx:id="cmbFacilitadorD" prefWidth="150.0" promptText="Seleccionar" />
+            <Button fx:id="btnGenerarD" mnemonicParsing="false" text="Generar Reporte" />
+        </children>
+    </VBox>
+</AnchorPane>
