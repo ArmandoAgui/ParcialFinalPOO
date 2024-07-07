@@ -32,12 +32,22 @@ public class ReportController implements Initializable { // 00174323: Definir la
     private Label lblErrorReporteA;  //00144723 -> Este label es para mostrar un mensaje de que uno o más campos estan vacios al querer generar un reporte.
     @FXML
     private Button btnGenerarReporteA;
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private TextField tfIdB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private TextField tfMesB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private TextField tfAnioB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private Button btnGenerarReporteB; // 00044123: Define un campo TextField en el controlador JavaFX
+
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
     private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
     private static final String contraseña = "12345678"; // 00174323: Contraseña de la base de datos
 
     @Override // 00174323: Método de inicialización del controlador
     public void initialize(URL location, ResourceBundle resources) {
+        btnGenerarReporteB.setOnAction(event -> generarReporteB());
         btnGenerarD.setOnAction(event -> generarReporte()); // 00174323: Configura la acción del botón para generar el reporte
         cargarFacilitadores(); // 00174323: Llenar el ComboBox con facilitadores
     }
@@ -200,6 +210,59 @@ public class ReportController implements Initializable { // 00174323: Definir la
             }
         }
 
+    }
+
+    private void generarReporteB (){
+
+        String id = tfIdB.getText(); // 00044123: Obtiene el ID del usuario seleccionado
+        String mes = tfMesB.getText(); // 00044123: Obtiene el mes en que el usuario hizo la compra
+        String anio = tfAnioB.getText(); // 00044123: Obtiene el año en que el usuario hizo la compra
+        String consultaSQL = "SELECT c.id AS ClienteID, c.nombreCompleto AS NombreCliente, SUM(t.montoTotal) AS TotalGastado, MONTHNAME(t.fecha) AS NombreMes " +
+                "FROM Clientes c " +
+                "INNER JOIN Tarjetas tj ON c.id = tj.clienteId " +
+                "INNER JOIN Transacciones t ON tj.id = t.tarjetaId " +
+                "WHERE c.id = ? AND YEAR(t.fecha) = ? AND MONTH(t.fecha) = ? " +
+                "GROUP BY c.id, c.nombreCompleto, NombreMes";// 00044123: Consulta SQL para calcular la sumatoria del dinero gastado por un cliente en un mes específico.
+        try (
+                Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contraseña); // 00044123: Establecer conexión a la base de datos
+                PreparedStatement statement = conexion.prepareStatement(consultaSQL); // 00044123: Preparar la declaración SQL
+        ) {
+            statement.setString(1, id); // 00044123: Asignar el valor del ID al parámetro en la consulta preparada
+            statement.setString(2, anio); // 00044123: Asignar el valor del mes al parámetro en la consulta preparada
+            statement.setString(3, mes); // 00044123: Asignar el valor del año al parámetro en la consulta preparada
+            ResultSet resultado = statement.executeQuery(); // 00044123: Ejecutar la consulta y obtener el resultado
+
+            // 00044123: Crear la carpeta "Reporte" si no existe
+            File carpetaReporte = new File("Reporte");
+            if (!carpetaReporte.exists()) { // 00044123: Verifica la existencia de la carpeta "Reporte" si no existe
+                carpetaReporte.mkdirs(); // 00044123: Crear la carpeta "Reporte" si no existe
+            }
+            String nombreArchivo = "Reporte B" + " - " + java.time.LocalDateTime.now().toString().replace(':', '-'); // 00044123: Nombre del archivo de reporte con la letra del facilitador y fecha/hora actual
+
+            // 00044123: Crear un BufferedWriter para escribir en el archivo dentro de la carpeta "Reporte"
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(carpetaReporte, nombreArchivo + ".txt")))) {
+                writer.write("Reporte de el total de dinero gastado por un cliente en un mes específico " + "\n\n"); // 00044123: Escribir encabezado del reporte
+
+                // 00044123: Iterar sobre los resultados y escribir en el archivo
+                while (resultado.next()) {
+                    String cliente = resultado.getString("ClienteID");
+                    String nombre = resultado.getString("NombreCliente");
+                    double totalGastado = resultado.getDouble("TotalGastado");
+                    String nombreMes = resultado.getString("NombreMes");
+
+                    // 00044123: Escribir cada línea en el archivo
+                    writer.write("ID Cliente: " + cliente + "\n");
+                    writer.write("Nombre: " + nombre + "\n");
+                    writer.write("Total gastado: $" + totalGastado + "\n");
+                    writer.write("Mes: " + nombreMes + "\n\n");
+                }
+                mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); // 00044123: Confirmación de escritura
+            } catch (IOException e) { // 00044123: Manejo de excepción al escribir en el archivo
+                mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); // 00044123: Manejo de excepción al escribir en el archivo
+            }
+        } catch (SQLException e) { // 00044123: Manejo de excepción en la consulta SQL
+            mostrarAlerta("Error", "Error en la consulta SQL: " + e.getMessage()); // 00044123: Manejo de excepción en la consulta SQL
+        }
     }
 
     // 00174323: Método auxiliar para mostrar alertas

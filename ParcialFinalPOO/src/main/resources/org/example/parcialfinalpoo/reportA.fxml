@@ -43,6 +43,7 @@
             </HBox>
             <Label fx:id="lblErrorReporteA" />
             <Button fx:id="btnGenerarReporteA" mnemonicParsing="false" onAction="#generarReporteA" text="Generar" />
+            <Button fx:id="btnGenerarReporteB" disable="true" mnemonicParsing="false" opacity="0.0" text="Generar Reporte" />
             <Button fx:id="btnGenerarD" disable="true" mnemonicParsing="false" opacity="0.0" text="Generar Reporte" />
             <ComboBox fx:id="cmbFacilitadorD" disable="true" opacity="0.0" prefWidth="150.0" promptText="Seleccionar" />
         </children>

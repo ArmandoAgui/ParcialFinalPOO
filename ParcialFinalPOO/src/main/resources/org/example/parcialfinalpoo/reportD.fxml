@@ -17,5 +17,6 @@
             <ComboBox fx:id="cmbFacilitadorD" prefWidth="150.0" promptText="Seleccionar" />
             <Button fx:id="btnGenerarD" mnemonicParsing="false" text="Generar Reporte" />
         </children>
+        <Button fx:id="btnGenerarReporteB" disable="true" mnemonicParsing="false" opacity="0.0" text="Generar Reporte" />
     </VBox>
 </AnchorPane>
