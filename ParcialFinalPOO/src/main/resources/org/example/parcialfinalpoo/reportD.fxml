@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.parcialfinalpoo.ReportController"
-            prefHeight="400.0" prefWidth="600.0">
-    <VBox prefHeight="200.0" prefWidth="100.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.ReportController">
+    <VBox alignment="CENTER" layoutX="51.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
         <children>
-            <Label fx:id="facilitadorRepoD" text="Facilitador:" />
+            <Label fx:id="facilitadorRepoD" text="Facilitador:">
+            <font>
+               <Font name="Candara Bold" size="16.0" />
+            </font></Label>
             <ComboBox fx:id="cmbFacilitadorD" prefWidth="150.0" promptText="Seleccionar" />
             <Button fx:id="btnGenerarD" mnemonicParsing="false" text="Generar Reporte" />
         </children>
