@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.HelloController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.HelloController">
    <children>
-      <HBox alignment="CENTER" prefHeight="150.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
          <children>
             <Label text="Banco Central de Niogonia (BCN)" textFill="#0f044c">
                <font>
@@ -29,50 +22,24 @@
             </ImageView>
          </children>
          <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets top="-90.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="600.0" spacing="10.0">
+      <HBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="600.0">
          <children>
-            <TitledPane alignment="CENTER" expanded="false" prefHeight="450.0" prefWidth="350.0" text="Gestor de Clientes" textFill="#141e61" underline="true">
+            <TitledPane alignment="CENTER" expanded="false" prefHeight="200.0" prefWidth="200.0" text="Gestor de Clientes" textFill="#141e61" underline="true">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Agregar cliente">
-                           <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Nombre Completo:" />
-                                    <TextField fx:id="nameField" />
-                                    <Label text="Direccion:" />
-                                    <TextField fx:id="adressField" />
-                                    <Label text="Telefono:" />
-                                    <TextField layoutX="20.0" layoutY="80.0" />
-                                 </children>
-                              </VBox>
-                           </content></TitledPane>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar cliente">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Nombre que desea eliminar:" />
-                                    <TextField />
-                                 </children>
-                              </VBox>
-                           </content></TitledPane>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar cliente">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin></TitledPane>
+
+                        <Button fx:id="btnUpdateClient" mnemonicParsing="false" onAction="#actualizarCliente" text="Gestion Cliente" />
+
                      </children></VBox>
                </content></TitledPane>
-            <TitledPane alignment="CENTER" expanded="false" layoutX="20.0" layoutY="10.0" prefHeight="450.0" prefWidth="350.0" text="Gestor de Tarjetas" textFill="#141e61" underline="true">
+            <TitledPane alignment="CENTER" expanded="false" layoutX="20.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Gestor de Tarjetas" textFill="#141e61" underline="true">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -116,59 +83,21 @@
                   </VBox>
                </content>
             </TitledPane>
-            <TitledPane alignment="CENTER" expanded="false" prefHeight="450.0" prefWidth="350.0" text="Gestor de transacciones" textFill="#141e61" underline="true">
+            <TitledPane alignment="CENTER" expanded="false" prefHeight="200.0" prefWidth="200.0" text="Gestor de transacciones" textFill="#141e61" underline="true">
                <content>
-                  <VBox alignment="CENTER" prefHeight="350.0" prefWidth="200.0" spacing="10.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Reporte A">
                            <content>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="ID Cliente:" />
-                                    <TextField fx:id="idRepoA" />
-                                    <Label layoutX="20.0" layoutY="20.0" text="Intervalo de fechas:" />
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                                             <children>
-                                                <Label text="Inicio" />
-                                                <DatePicker fx:id="dateFechaInicioA" prefWidth="150.0" VBox.vgrow="ALWAYS" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                                             <children>
-                                                <Label text="Fin" />
-                                                <DatePicker fx:id="DateFechaFinA" prefWidth="250.0" VBox.vgrow="ALWAYS" />
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <Label fx:id="lblErrorReporteA" />
-                                    <Button fx:id="btnGenerarReporteA" mnemonicParsing="false" text="Generar" />
+                                    <fx:include source="reportA.fxml" />
                                  </children>
                               </VBox>
                            </content></TitledPane>
                         <TitledPane expanded="false" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" text="Reporte B">
                            <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label fx:id="" text="ID Cliente:" />
-                                    <TextField fx:id="idRepoB" />
-                                    <Label layoutX="20.0" layoutY="20.0" text="Mes:" />
-                                    <TextField fx:id="mesRepoB" layoutX="20.0" layoutY="37.0" />
-                                    <Label layoutX="20.0" layoutY="63.0" text="Año:" />
-                                    <TextField fx:id="anioRepoB" layoutX="20.0" layoutY="80.0" />
-                                 </children>
-                              </VBox>
+                              <fx:include source="reportB.fxml" />
                            </content>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -178,8 +107,7 @@
                            <content>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="ID Cliente:" />
-                                    <TextField fx:id="idRepoC" />
+                                    <fx:include source="reportC.fxml" />
                                  </children>
                               </VBox>
                            </content>
@@ -189,13 +117,7 @@
                         </TitledPane>
                         <TitledPane expanded="false" layoutX="20.0" layoutY="235.0" prefHeight="200.0" prefWidth="200.0" text="Reporte D">
                            <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label fx:id="facilitadorRepoD" text="Facilitador:" />
-                                    <ComboBox fx:id="cmbFacilitadorD" prefWidth="150.0" promptText="Seleccionar" />
-                                    <Button fx:id="btnGenerarD" mnemonicParsing="false" text="Generar Reporte" />
-                                 </children>
-                              </VBox>
+                              <fx:include source="reportD.fxml" />
                            </content>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -211,19 +133,13 @@
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="250.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="10.0" />
          </VBox.margin>
          <children>
-            <ListView fx:id="tarjetasListView" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="10.0" />
-               </HBox.margin></ListView>
+            <ListView fx:id="tarjetasListView" prefHeight="200.0" prefWidth="500.0" />
          </children>
       </HBox>
    </children>

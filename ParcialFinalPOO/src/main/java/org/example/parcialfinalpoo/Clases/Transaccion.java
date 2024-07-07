@@ -49,10 +49,4 @@ public class Transaccion {
     public void setTarjeta(Tarjeta tarjeta) {
         this.tarjeta = tarjeta;
     }
-
-    @Override
-    public String toString() {
-        return tarjeta.getCliente().getNombre() + " - " + fecha + " - " + "$" + montoTotal + " - " + descripcion + " - " + tarjeta.getNumeroTarjeta() + " - " +
-                tarjeta.getTipo() + " - " + tarjeta.getFacilitador();
-    }
 }
