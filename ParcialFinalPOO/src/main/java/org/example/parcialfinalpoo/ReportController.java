@@ -22,14 +22,14 @@ public class ReportController implements Initializable { // 00174323: Definir la
     @FXML // 00174323: Anotación para inyectar el campo desde el archivo FXML
     private Button btnGenerarD; // 00174323: Declaración del botón para generar reporte
 
-    @FXML
-    private TextField tfIdB;
-    @FXML
-    private TextField tfMesB;
-    @FXML
-    private TextField tfAnioB;
-    @FXML
-    private Button btnGenerarReporteB;
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private TextField tfIdB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private TextField tfMesB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private TextField tfAnioB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
+    private Button btnGenerarReporteB; // 00044123: Define un campo TextField en el controlador JavaFX
 
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
     private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
@@ -123,9 +123,9 @@ public class ReportController implements Initializable { // 00174323: Definir la
 
     private void generarReporteB (){
 
-        String id = tfIdB.getText(); // 00044123: Obtener el facilitador seleccionado del ComboBox
-        String mes = tfMesB.getText();
-        String anio = tfAnioB.getText();
+        String id = tfIdB.getText(); // 00044123: Obtiene el ID del usuario seleccionado
+        String mes = tfMesB.getText(); // 00044123: Obtiene el mes en que el usuario hizo la compra
+        String anio = tfAnioB.getText(); // 00044123: Obtiene el año en que el usuario hizo la compra
         String consultaSQL = "SELECT c.id AS ClienteID, c.nombreCompleto AS NombreCliente, SUM(t.montoTotal) AS TotalGastado, MONTHNAME(t.fecha) AS NombreMes " +
                 "FROM Clientes c " +
                 "INNER JOIN Tarjetas tj ON c.id = tj.clienteId " +
