@@ -1,6 +1,5 @@
 package org.example.parcialfinalpoo;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML; // 00174323: Importar anotaciones de JavaFX para inyección de campos
 import javafx.fxml.Initializable; // 00174323: Importar interfaz para inicialización del controlador
 import javafx.scene.control.*; // 00174323: Importar clases de JavaFX para controles UI
@@ -22,6 +21,7 @@ public class ReportController implements Initializable { // 00174323: Definir la
 
     @FXML // 00174323: Anotación para inyectar el campo desde el archivo FXML
     private Button btnGenerarD; // 00174323: Declaración del botón para generar reporte
+
     @FXML
     private TextField idRepoA; //00116223 -> Se le asigna el nombre del elemento de JavaFX dentro del controller. Campo que solicitara en generador de Reporte A
     @FXML
@@ -32,17 +32,14 @@ public class ReportController implements Initializable { // 00174323: Definir la
     private Label lblErrorReporteA;  //00144723 -> Este label es para mostrar un mensaje de que uno o más campos estan vacios al querer generar un reporte.
     @FXML
     private Button btnGenerarReporteA;
-
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
     private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
     private static final String contraseña = "12345678"; // 00174323: Contraseña de la base de datos
 
     @Override // 00174323: Método de inicialización del controlador
     public void initialize(URL location, ResourceBundle resources) {
-        btnGenerarReporteA.setOnAction(actionEvent -> generarReporteA());
         btnGenerarD.setOnAction(event -> generarReporte()); // 00174323: Configura la acción del botón para generar el reporte
         cargarFacilitadores(); // 00174323: Llenar el ComboBox con facilitadores
-
     }
 
     // 00174323: Método para cargar facilitadores desde la base de datos al ComboBox
@@ -115,7 +112,6 @@ public class ReportController implements Initializable { // 00174323: Definir la
         }
     }
 
-
     //Reporte A.
     @FXML
     private void generarReporteA() {
@@ -158,7 +154,7 @@ public class ReportController implements Initializable { // 00174323: Definir la
                 ResultSet rs = psMostrarCompras.executeQuery();
 
                 //00144723 - Se crea un carpeta si no existe, esto con el fin de ir almacenando los reportes
-                File reporteA = new File("ReporteA");
+                File reporteA = new File("Reporte");
                 if (!reporteA.exists()) {
                     reporteA.mkdirs();//00144723 - Si no existe se crea
                 }

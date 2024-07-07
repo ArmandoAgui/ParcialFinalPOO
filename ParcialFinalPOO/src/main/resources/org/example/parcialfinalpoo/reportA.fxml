@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.ReportController">
+    <VBox alignment="CENTER" prefHeight="251.0" prefWidth="222.0">
+        <children>
+            <Label text="ID Cliente:" />
+            <TextField fx:id="idRepoA" />
+            <Label layoutX="20.0" layoutY="20.0" text="Intervalo de fechas:" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <children>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                        <children>
+                            <Label text="Inicio" />
+                            <DatePicker fx:id="dateFechaInicioA" prefWidth="150.0" VBox.vgrow="ALWAYS" />
+                        </children>
+                        <padding>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                    </VBox>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                        <children>
+                            <Label text="Fin" />
+                            <DatePicker fx:id="DateFechaFinA" prefHeight="26.0" prefWidth="68.0" VBox.vgrow="ALWAYS" />
+                        </children>
+                        <padding>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                    </VBox>
+                </children>
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+            </HBox>
+            <Label fx:id="lblErrorReporteA" />
+            <Button fx:id="btnGenerarReporteA" mnemonicParsing="false" onAction="#generarReporteA" text="Generar" />
+            <Button fx:id="btnGenerarD" disable="true" mnemonicParsing="false" opacity="0.0" text="Generar Reporte" />
+            <ComboBox fx:id="cmbFacilitadorD" disable="true" opacity="0.0" prefWidth="150.0" promptText="Seleccionar" />
+        </children>
+    </VBox>
+</AnchorPane>
