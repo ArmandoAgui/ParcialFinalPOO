@@ -126,12 +126,12 @@ public class ReportController implements Initializable { // 00174323: Definir la
         String id = tfIdB.getText(); // 00044123: Obtener el facilitador seleccionado del ComboBox
         String mes = tfMesB.getText();
         String anio = tfAnioB.getText();
-        String consultaSQL = "SELECT c.id AS ClienteID, c.nombreCompleto AS NombreCliente, SUM(t.montoTotal) AS TotalGastado " +
+        String consultaSQL = "SELECT c.id AS ClienteID, c.nombreCompleto AS NombreCliente, SUM(t.montoTotal) AS TotalGastado, MONTHNAME(t.fecha) AS NombreMes " +
                 "FROM Clientes c " +
                 "INNER JOIN Tarjetas tj ON c.id = tj.clienteId " +
                 "INNER JOIN Transacciones t ON tj.id = t.tarjetaId " +
                 "WHERE c.id = ? AND YEAR(t.fecha) = ? AND MONTH(t.fecha) = ? " +
-                "GROUP BY c.id, c.nombreCompleto";// 00044123: Consulta SQL para calcular la sumatoria del dinero gastado por un cliente en un mes específico.
+                "GROUP BY c.id, c.nombreCompleto, NombreMes";// 00044123: Consulta SQL para calcular la sumatoria del dinero gastado por un cliente en un mes específico.
         try (
                 Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contraseña); // 00044123: Establecer conexión a la base de datos
                 PreparedStatement statement = conexion.prepareStatement(consultaSQL); // 00044123: Preparar la declaración SQL
@@ -157,11 +157,13 @@ public class ReportController implements Initializable { // 00174323: Definir la
                     String cliente = resultado.getString("ClienteID");
                     String nombre = resultado.getString("NombreCliente");
                     double totalGastado = resultado.getDouble("TotalGastado");
+                    String nombreMes = resultado.getString("NombreMes");
 
                     // 00044123: Escribir cada línea en el archivo
                     writer.write("ID Cliente: " + cliente + "\n");
                     writer.write("Nombre: " + nombre + "\n");
-                    writer.write("Total gastado: $" + totalGastado + "\n\n");
+                    writer.write("Total gastado: $" + totalGastado + "\n");
+                    writer.write("Mes: " + nombreMes + "\n\n");
                 }
                 mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); // 00044123: Confirmación de escritura
             } catch (IOException e) { // 00044123: Manejo de excepción al escribir en el archivo
