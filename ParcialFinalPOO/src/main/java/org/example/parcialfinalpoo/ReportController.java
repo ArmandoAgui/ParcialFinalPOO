@@ -9,6 +9,7 @@ import java.io.FileWriter; // 00174323: Importar clase para escribir en archivos
 import java.io.IOException; // 00174323: Importar clase para manejo de excepciones de E/S
 import java.net.URL; // 00174323: Importar clase para manejo de URL
 import java.sql.*; // 00174323: Importar clases para manejo de bases de datos y SQL
+import java.time.LocalDateTime;
 import java.util.ResourceBundle; // 00174323: Importar clase para manejar recursos
 import javafx.scene.control.Alert; // 00174323: Importar clase de JavaFX para mostrar alertas
 import javafx.scene.control.Button; // 00174323: Importar clase de JavaFX para botones
@@ -21,9 +22,14 @@ public class ReportController implements Initializable { // 00174323: Definir la
     @FXML // 00174323: Anotación para inyectar el campo desde el archivo FXML
     private Button btnGenerarD; // 00174323: Declaración del botón para generar reporte
 
-    @FXML // 00174323: Anotación para inyectar el campo desde el archivo FXML
-    private ComboBox<String> idRepoC; // 00174323: Declaración del ComboBox para facilitadores
-
+    @FXML
+    private TextField tfIdB;
+    @FXML
+    private TextField tfMesB;
+    @FXML
+    private TextField tfAnioB;
+    @FXML
+    private Button btnGenerarReporteB;
 
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
     private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
@@ -32,6 +38,7 @@ public class ReportController implements Initializable { // 00174323: Definir la
     @Override // 00174323: Método de inicialización del controlador
     public void initialize(URL location, ResourceBundle resources) {
         btnGenerarD.setOnAction(event -> generarReporte()); // 00174323: Configura la acción del botón para generar el reporte
+        btnGenerarReporteB.setOnAction(event -> generarReporteB());
         cargarFacilitadores(); // 00174323: Llenar el ComboBox con facilitadores
     }
 
@@ -114,43 +121,24 @@ public class ReportController implements Initializable { // 00174323: Definir la
         alert.showAndWait(); // 00174323: Mostrar la alerta y esperar a que el usuario la cierre
     }
 
-    private void cargarDatos() {
-        String consultaSQL = "SELECT nombre FROM Transacciones "; // 00174323: Consulta SQL para obtener los facilitadores
-
-        try (
-                Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contraseña); // 00174323: Establecer conexión a la base de datos
-                Statement statement = conexion.createStatement(); // 00174323: Crear una declaración SQL
-                ResultSet resultado = statement.executeQuery(consultaSQL) // 00174323: Ejecutar la consulta y obtener el resultado
-        ) {
-            while (resultado.next()) {
-                String id = resultado.getString("id"); // 00174323: Obtener el nombre del facilitador
-                Date fecha = resultado.getDate("fecha"); // 00174323: Obtener la fecha
-
-                idRepoC.getItems().add(id); // 00174323: Añadir el nombre del facilitador al ComboBox
-                idRepoC.getItems().add(fecha);
-            }
-        } catch (SQLException e) {
-            mostrarAlerta("Error", "Error al cargar facilitadores: " + e.getMessage()); // 00174323: Manejo de excepción en la consulta SQL
-        }
-    }
-
     private void generarReporteB (){
 
-        String facilitador = idRepoC.getSelectionModel().getSelectedItem(); // 00044123: Obtener el facilitador seleccionado del ComboBox
-
-        String consultaSQL = "SELECT SUM(t.montoTotal) AS totalGastado " +
-                "FROM Transacciones t " +
-                "JOIN Tarjetas ta ON t.tarjetaId = ta.id " +
-                "WHERE ta.clienteId = ? " +
-                "AND YEAR(t.fecha) = ? " +
-                "AND MONTH(t.fecha) = ?"; // 00044123: Consulta SQL para calcular la sumatoria del dinero gastado por un cliente en un mes específico.
+        String id = tfIdB.getText(); // 00044123: Obtener el facilitador seleccionado del ComboBox
+        String mes = tfMesB.getText();
+        String anio = tfAnioB.getText();
+        String consultaSQL = "SELECT c.id AS ClienteID, c.nombreCompleto AS NombreCliente, SUM(t.montoTotal) AS TotalGastado " +
+                "FROM Clientes c " +
+                "INNER JOIN Tarjetas tj ON c.id = tj.clienteId " +
+                "INNER JOIN Transacciones t ON tj.id = t.tarjetaId " +
+                "WHERE c.id = ? AND YEAR(t.fecha) = ? AND MONTH(t.fecha) = ? " +
+                "GROUP BY c.id, c.nombreCompleto";// 00044123: Consulta SQL para calcular la sumatoria del dinero gastado por un cliente en un mes específico.
         try (
                 Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contraseña); // 00044123: Establecer conexión a la base de datos
                 PreparedStatement statement = conexion.prepareStatement(consultaSQL); // 00044123: Preparar la declaración SQL
         ) {
             statement.setString(1, id); // 00044123: Asignar el valor del ID al parámetro en la consulta preparada
-            statement.setInt(2, mes); // 00044123: Asignar el valor del mes al parámetro en la consulta preparada
-            statement.setInt(3,anio); // 00044123: Asignar el valor del año al parámetro en la consulta preparada
+            statement.setString(2, anio); // 00044123: Asignar el valor del mes al parámetro en la consulta preparada
+            statement.setString(3, mes); // 00044123: Asignar el valor del año al parámetro en la consulta preparada
             ResultSet resultado = statement.executeQuery(); // 00044123: Ejecutar la consulta y obtener el resultado
 
             // 00044123: Crear la carpeta "Reporte" si no existe
@@ -166,13 +154,13 @@ public class ReportController implements Initializable { // 00174323: Definir la
 
                 // 00044123: Iterar sobre los resultados y escribir en el archivo
                 while (resultado.next()) {
-                    String cliente = resultado.getString("Cliente");
-                    int mesCompra = resultado.getInt("MesCompra");
+                    String cliente = resultado.getString("ClienteID");
+                    String nombre = resultado.getString("NombreCliente");
                     double totalGastado = resultado.getDouble("TotalGastado");
 
                     // 00044123: Escribir cada línea en el archivo
-                    writer.write("Cliente: " + cliente + "\n");
-                    writer.write("Mes de compra: " + mesCompra + "\n");
+                    writer.write("ID Cliente: " + cliente + "\n");
+                    writer.write("Nombre: " + nombre + "\n");
                     writer.write("Total gastado: $" + totalGastado + "\n\n");
                 }
                 mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); // 00044123: Confirmación de escritura
