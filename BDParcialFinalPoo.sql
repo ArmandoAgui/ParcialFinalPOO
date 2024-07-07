@@ -4,38 +4,39 @@ USE parcialFinal;
 
 -- Tabla Clientes
 CREATE TABLE Clientes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombreCompleto VARCHAR(255) NOT NULL,
-    direccion VARCHAR(255) NOT NULL,
-    telefono VARCHAR(15) NOT NULL
+                          id INT AUTO_INCREMENT PRIMARY KEY,
+                          nombreCompleto VARCHAR(255) NOT NULL,
+                          direccion VARCHAR(255) NOT NULL,
+                          telefono VARCHAR(15) NOT NULL,
+                          dui VARCHAR(9) UNIQUE
 );
 
 -- Tabla Facilitadores
 CREATE TABLE Facilitadores (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
+                               id INT AUTO_INCREMENT PRIMARY KEY,
+                               nombre VARCHAR(50) NOT NULL
 );
 
 -- Tabla Tarjetas
 CREATE TABLE Tarjetas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    numeroTarjeta VARCHAR(20) NOT NULL UNIQUE,
-    fechaExpiracion DATE NOT NULL,
-    tipo ENUM('Credito', 'Debito') NOT NULL,
-    facilitadorId INT,
-    clienteId INT,
-    FOREIGN KEY (facilitadorId) REFERENCES Facilitadores(id),
-    FOREIGN KEY (clienteId) REFERENCES Clientes(id)
+                          id INT AUTO_INCREMENT PRIMARY KEY,
+                          numeroTarjeta VARCHAR(20) NOT NULL UNIQUE,
+                          fechaExpiracion DATE NOT NULL,
+                          tipo ENUM('Credito','Debito') NOT NULL,
+                          facilitadorId INT,
+                          clienteId INT,
+                          FOREIGN KEY (facilitadorId) REFERENCES Facilitadores(id),
+                          FOREIGN KEY (clienteId) REFERENCES Clientes(id)
 );
 
 -- Tabla Transacciones
 CREATE TABLE Transacciones (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fecha DATETIME NOT NULL,
-    montoTotal DECIMAL(10, 2) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
-    tarjetaId INT,
-    FOREIGN KEY (tarjetaId) REFERENCES Tarjetas(id)
+                               id INT AUTO_INCREMENT PRIMARY KEY,
+                               fecha DATETIME NOT NULL,
+                               montoTotal DECIMAL(10, 2) NOT NULL,
+                               descripcion VARCHAR(255) NOT NULL,
+                               tarjetaId INT,
+                               FOREIGN KEY (tarjetaId) REFERENCES Tarjetas(id)
 );
 
 -- Inserción de datos en la tabla Facilitadores
@@ -44,21 +45,21 @@ INSERT INTO Facilitadores (nombre) VALUES ('MasterCard');
 INSERT INTO Facilitadores (nombre) VALUES ('American Express');
 
 -- Inserción de datos en la tabla Clientes
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Juan Pérez', 'San Salvador', '2101-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('María López', 'Santa Ana', '2102-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Carlos Hernández', 'San Miguel', '2103-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Ana Martínez', 'Mejicanos', '2104-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Luis González', 'Soyapango', '2105-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Sofía Rodríguez', 'Apopa', '2106-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Ricardo Rivera', 'San Vicente', '2107-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Laura Díaz', 'Ahuachapán', '2108-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Pedro Ramos', 'Cojutepeque', '2109-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Elena Morales', 'Usulután', '2110-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Jorge Castillo', 'Chalatenango', '2111-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Natalia Guzmán', 'San Francisco Gotera', '2112-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Manuel Romero', 'Sonsonate', '2113-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Paula Flores', 'La Libertad', '2114-1234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Francisco Cruz', 'Zacatecoluca', '2115-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Juan Pérez', 'San Salvador', '2101-1234', '123456789');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('María López', 'Santa Ana', '2102-1234', '234567890');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Carlos Hernández', 'San Miguel', '2103-1234', '345678901');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Ana Martínez', 'Mejicanos', '2104-1234', '456789012');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Luis González', 'Soyapango', '2105-1234', '567890123');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Sofía Rodríguez', 'Apopa', '2106-1234', '678901234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Ricardo Rivera', 'San Vicente', '2107-1234', '789012345');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Laura Díaz', 'Ahuachapán', '2108-1234', '890123456');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Pedro Ramos', 'Cojutepeque', '2109-1234', '901234567');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Elena Morales', 'Usulután', '2110-1234', '012345678');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Jorge Castillo', 'Chalatenango', '2111-1234', '112345678');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Natalia Guzmán', 'San Francisco Gotera', '2112-1234', '122345678');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Manuel Romero', 'Sonsonate', '2113-1234', '132345678');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Paula Flores', 'La Libertad', '2114-1234', '142345678');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Francisco Cruz', 'Zacatecoluca', '2115-1234', '152345678');
 
 -- Inserción de datos en la tabla Tarjetas
 INSERT INTO Tarjetas (numeroTarjeta, fechaExpiracion, tipo, facilitadorId, clienteId) VALUES ('1234567890123456', '2025-05-01', 'Credito', 1, 1);
@@ -125,24 +126,44 @@ FROM Clientes c;
 -- Consulta de Tarjetas
 SELECT t.numeroTarjeta AS NumeroTarjeta, t.fechaExpiracion AS FechaExpiracion, t.tipo AS TipoTarjeta, f.nombre AS Facilitador, c.nombreCompleto AS Cliente
 FROM Tarjetas t
-INNER JOIN Facilitadores f ON t.facilitadorId = f.id
-INNER JOIN Clientes c ON t.clienteId = c.id;
+         INNER JOIN Facilitadores f ON t.facilitadorId = f.id
+         INNER JOIN Clientes c ON t.clienteId = c.id;
 
 -- Consulta de Transacciones
 SELECT tr.fecha AS FechaTransaccion, tr.montoTotal AS MontoTotal, tr.descripcion AS Descripcion, t.numeroTarjeta AS NumeroTarjeta, f.nombre AS Facilitador, c.nombreCompleto AS Cliente
 FROM Transacciones tr
-INNER JOIN Tarjetas t ON tr.tarjetaId = t.id
-INNER JOIN Facilitadores f ON t.facilitadorId = f.id
-INNER JOIN Clientes c ON t.clienteId = c.id;
+         INNER JOIN Tarjetas t ON tr.tarjetaId = t.id
+         INNER JOIN Facilitadores f ON t.facilitadorId = f.id
+         INNER JOIN Clientes c ON t.clienteId = c.id;
 
 -- Reporte D
 -- Consulta para obtener clientes que han realizado compras con un facilitador de tarjeta específico
 SELECT c.id, c.nombreCompleto AS Cliente, COUNT(t.id) AS CantidadCompras, SUM(tr.montoTotal) AS TotalGastado, f.nombre AS Facilitador
 FROM Clientes c
-INNER JOIN Tarjetas t ON c.id = t.clienteId
-INNER JOIN Facilitadores f ON t.facilitadorId = f.id
-INNER JOIN Transacciones tr ON t.id = tr.tarjetaId
+         INNER JOIN Tarjetas t ON c.id = t.clienteId
+         INNER JOIN Facilitadores f ON t.facilitadorId = f.id
+         INNER JOIN Transacciones tr ON t.id = tr.tarjetaId
 WHERE t.facilitadorId = 1
 GROUP BY c.id, c.nombreCompleto;
 
 
+SELECT c.id, c.nombreCompleto, c.direccion, c.telefono
+FROM Clientes c
+
+SELECT
+    c.id AS ClienteID,
+    c.nombreCompleto AS NombreCliente,
+    MONTHNAME(t.fecha) AS NombreMes,
+    SUM(t.montoTotal) AS TotalGastado
+FROM
+    Clientes c
+        INNER JOIN
+    Tarjetas tj ON c.id = tj.clienteId
+        INNER JOIN
+    Transacciones t ON tj.id = t.tarjetaId
+WHERE
+    c.dui = '123456789'
+        AND YEAR(t.fecha) = 2024
+  AND MONTH(t.fecha) = 1
+GROUP BY
+    c.id, c.nombreCompleto, NombreMes;
