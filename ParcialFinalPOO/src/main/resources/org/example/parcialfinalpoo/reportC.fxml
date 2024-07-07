@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.ReportController">
+    <children>
+        <VBox alignment="CENTER" layoutX="98.0" layoutY="14.0" prefHeight="183.0" prefWidth="103.0">
+            <children>
+                <Label alignment="CENTER" text="ID Cliente" />
+                <TextField fx:id="idClienteRepoC" prefHeight="26.0" prefWidth="146.0">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </TextField>
+                <Button fx:id="btnGenerarReporteC" mnemonicParsing="false" onAction="#generarReporteC" text="Generar">
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+            <Button fx:id="btnGenerarReporteB" disable="true" mnemonicParsing="false" opacity="0.0" text="Generar Reporte" />
+            <Button fx:id="btnGenerarD" disable="true" mnemonicParsing="false" opacity="0.0" text="Generar Reporte" />
+            <ComboBox fx:id="cmbFacilitadorD" disable="true" opacity="0.0" prefWidth="150.0" promptText="Seleccionar" />
+        </VBox>
+    </children>
 </AnchorPane>

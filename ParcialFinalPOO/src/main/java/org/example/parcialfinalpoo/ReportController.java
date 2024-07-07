@@ -40,10 +40,14 @@ public class ReportController implements Initializable { // 00174323: Definir la
     private TextField tfAnioB; // 00044123: Define un campo TextField en el controlador JavaFX
     @FXML // 00044123: Anotación para inyectar el campo desde el archivo FXML
     private Button btnGenerarReporteB; // 00044123: Define un campo TextField en el controlador JavaFX
+    @FXML
+    private Button btnGenerarReporteC; //00116223 -> Se define un boton para el controlador.
+    @FXML
+    private TextField idClienteRepoC; //00116223 -> Se define un text field para el controlador.
 
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
-    private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
-    private static final String contraseña = "12345678"; // 00174323: Contraseña de la base de datos
+    private static final String usuario = "root"; // 00174323: Usuario de la base de datos
+    private static final String contraseña = "root1234"; // 00174323: Contraseña de la base de datos
 
     @Override // 00174323: Método de inicialización del controlador
     public void initialize(URL location, ResourceBundle resources) {
@@ -262,6 +266,47 @@ public class ReportController implements Initializable { // 00174323: Definir la
             }
         } catch (SQLException e) { // 00044123: Manejo de excepción en la consulta SQL
             mostrarAlerta("Error", "Error en la consulta SQL: " + e.getMessage()); // 00044123: Manejo de excepción en la consulta SQL
+        }
+    }
+
+    @FXML
+    private void generarReporteC(){
+        String idReporteC = idClienteRepoC.getText(); //00116223 -> Se obtiene los valores que se introdujeron dentro del reporte C
+        String consultaSQL =
+                "SELECT CONCAT(REPEAT('X', 12), SUBSTRING(t.numeroTarjeta, 13, 4)) AS NumeroTarjeta, t.tipo AS TipoTarjeta, c.nombreCompleto AS Cliente " +
+                        "FROM Tarjetas t INNER JOIN Clientes c ON t.clienteId = c.id WHERE c.id = ?;"; //00116223 -> Se define la query que se utilizara dentro del reporte C
+
+        try {
+            Connection conn = DriverManager.getConnection(jdbcUrl,usuario,contraseña); //00116223 -> Proceso de conexion a la base de datos.
+            PreparedStatement ps = conn.prepareStatement(consultaSQL); //00116223 -> Proceso de conexion a la base de datos. Parametro "consultaSQL" es la query anteriormente definidad.
+
+            ps.setString(1, idReporteC); //00116223 -> En el ingreso del id que el usuario ingresa dentro de la consulta.
+            ResultSet rs = ps.executeQuery(); //00116223 -> Proceso de conexion a la base de datos. Ejecuta la consulta
+
+            File carpetaReporte = new File("Reporte"); //00116223 -> Proceso de creacion del reporte, archivo txt.
+            if (!carpetaReporte.exists()) {
+                carpetaReporte.mkdirs();
+            }
+            String nombreArchivo = "Reporte C"; //00116223 -> Proceso de creacion del archivo donde se ingresara archivo txt.
+
+            //00116223 -> Proceso de creacion del reporte, archivo txt.
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(carpetaReporte, nombreArchivo + ".txt")))) {
+                writer.write("Reporte de las tarjetas de credito/debito de cliente en especifico. " + "\n\n");
+
+                while (rs.next()) {
+                    String tipoTarjeta = rs.getString("TipoTarjeta"); //00116223 -> Presentacion de la consulta dentro del programa.
+                    String numeroTarjeta = rs.getString("numeroTarjeta"); //00116223 -> Presentacion de la consulta dentro del programa.
+
+                    // 00044123: Escribir cada línea en el archivo
+                    writer.write("Tipo de tarjeta: " + tipoTarjeta + "\n"); //00116223 -> Ingreso de datos de la consulta dentro del archivo txt.
+                    writer.write("No. Tarjeta: " + numeroTarjeta + "\n"); //00116223 -> Ingreso de datos de la consulta dentro del archivo txt.
+                }
+                mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); //00116223 -> Confirmación de escritura
+            } catch (IOException e) { // 00044123: Manejo de excepción al escribir en el archivo
+                mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); //00116223 -> Manejo de excepción al escribir en el archivo
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
