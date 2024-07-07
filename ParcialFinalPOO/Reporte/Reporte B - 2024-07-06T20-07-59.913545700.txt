@@ -1,0 +1,6 @@
+Reporte de el total de dinero gastado por un cliente en un mes específico 
+
+ID Cliente: 1
+Nombre: Juan Pérez
+Total gastado: $15102.8
+
