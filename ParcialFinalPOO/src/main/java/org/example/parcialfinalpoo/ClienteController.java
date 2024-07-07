@@ -24,29 +24,37 @@ import java.util.ResourceBundle;
 public class ClienteController implements Initializable {
     // 00174323: Define los elementos de la interfaz gráfica con sus respectivas anotaciones FXML.
     @FXML
-    private TextField txtNombreCompleto;  // Campo de texto para el nombre completo del cliente.
+    private TextField txtNombreCompleto;  //00174323 Campo de texto para el nombre completo del cliente.
     @FXML
-    private TextField txtDireccion;  // Campo de texto para la dirección del cliente.
+    private TextField txtDireccion;  //00174323 Campo de texto para la dirección del cliente.
     @FXML
-    private TextField txtTelefono;  // Campo de texto para el teléfono del cliente.
+    private TextField txtTelefono;  //00174323 Campo de texto para el teléfono del cliente.
     @FXML
-    private TableView<Cliente> tblClientes;  // Tabla para mostrar la lista de clientes.
+    private TextField txtDui;  //00174323 Campo de texto para buscar con el dui al cliente.
     @FXML
-    private TableColumn<Cliente, Integer> colId;  // Columna para el ID del cliente.
+    private TextField txtBuscarDui;  //00174323 Campo de texto para el dui del cliente.
     @FXML
-    private TableColumn<Cliente, String> colNombreCompleto;  // Columna para el nombre completo del cliente.
+    private TableView<Cliente> tblClientes;  //00174323 Tabla para mostrar la lista de clientes.
     @FXML
-    private TableColumn<Cliente, String> colDireccion;  // Columna para la dirección del cliente.
+    private TableColumn<Cliente, Integer> colId;  //00174323 Columna para el ID del cliente.
     @FXML
-    private TableColumn<Cliente, String> colTelefono;  // Columna para el teléfono del cliente.
+    private TableColumn<Cliente, String> colNombreCompleto;  //00174323 Columna para el nombre completo del cliente.
     @FXML
-    private Button btnAgregar;  // Botón para agregar un cliente.
+    private TableColumn<Cliente, String> colDireccion;  //00174323 Columna para la dirección del cliente.
     @FXML
-    private Button btnActualizar;  // Botón para actualizar un cliente.
+    private TableColumn<Cliente, String> colTelefono;  //00174323 Columna para el teléfono del cliente.
     @FXML
-    private Button btnEliminar;  // Botón para eliminar un cliente.
+    private TableColumn<Cliente, String> colDui;  //00174323 Columna para el dui del cliente.
     @FXML
-    private Button btnLimpiar;  // Botón para limpiar los campos de texto.
+    private Button btnAgregar;  //00174323 Botón para agregar un cliente.
+    @FXML
+    private Button btnActualizar;  //00174323 Botón para actualizar un cliente.
+    @FXML
+    private Button btnEliminar;  //00174323 Botón para eliminar un cliente.
+    @FXML
+    private Button btnLimpiar;  //00174323 Botón para limpiar los campos de texto.
+    @FXML
+    private Button btnBuscar;  //00174323 Botón para buscar a los clientes mediante el dui.
 
     // 00174323: Define las constantes para la conexión a la base de datos.
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal";  // URL de la base de datos.
@@ -64,7 +72,7 @@ public class ClienteController implements Initializable {
         colNombreCompleto.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto")); // 00174323: Configura la columna colNombreCompleto para que use la propiedad "nombreCompleto" del modelo Cliente.
         colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion")); // 00174323: Configura la columna colDireccion para que use la propiedad "direccion" del modelo Cliente.
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono")); // 00174323: Configura la columna colTelefono para que use la propiedad "telefono" del modelo Cliente.
-
+        colDui.setCellValueFactory(new PropertyValueFactory<>("dui")); // 00174323: Configura la columna colDui para que use la propiedad "dui" del modelo Cliente.
         // 00174323: Inicializa la lista observable
         listaClientes = FXCollections.observableArrayList();
         tblClientes.setItems(listaClientes); // 00174323 Asocia con la tabla la lista.
@@ -81,7 +89,8 @@ public class ClienteController implements Initializable {
         btnEliminar.setOnAction(event -> eliminarCliente());
         // 00174323: Configura el manejador de eventos del botón btnLimpiar para llamar al método limpiarCampos() al hacer clic.
         btnLimpiar.setOnAction(event -> limpiarCampos());
-
+        // 00174323: Configura el manejador de eventos del botón btnBuscar para llamar al método buscarClientePorDui() al hacer clic.
+        btnBuscar.setOnAction(even -> buscarClientePorDui());
         // 00174323: Agrega un listener para cargar los datos del cliente seleccionado.
         tblClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) { //00174323 Verifica si aun hay datos
@@ -93,7 +102,7 @@ public class ClienteController implements Initializable {
     // 00174323: Método para cargar los clientes desde la base de datos.
     private void cargarClientes() {
         // 00174323: Define la consulta SQL para obtener los datos de los clientes.
-        String consultaSQL = "SELECT c.id, c.nombreCompleto, c.direccion, c.telefono FROM Clientes c";
+        String consultaSQL = "SELECT c.id, c.nombreCompleto, c.direccion, c.telefono, c.dui FROM Clientes c";
         try (Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contrasena);
              Statement statement = conexion.createStatement();
              ResultSet resultado = statement.executeQuery(consultaSQL)) {
@@ -106,7 +115,8 @@ public class ClienteController implements Initializable {
                         resultado.getInt("id"),
                         resultado.getString("nombreCompleto"),
                         resultado.getString("direccion"),
-                        resultado.getString("telefono")
+                        resultado.getString("telefono"),
+                        resultado.getString("dui")
                 );
                 listaClientes.add(cliente);
             }
@@ -134,9 +144,10 @@ public class ClienteController implements Initializable {
         String nombreCompleto = txtNombreCompleto.getText();
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
+        String dui = txtDui.getText();
 
         // 00174323: Define la consulta SQL para insertar un nuevo cliente.
-        String consultaSQL = "INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES (?, ?, ?)";
+        String consultaSQL = "INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES (?, ?, ?, ?)";
         try (Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contrasena);
              PreparedStatement statement = conexion.prepareStatement(consultaSQL)) {
 
@@ -144,6 +155,7 @@ public class ClienteController implements Initializable {
             statement.setString(1, nombreCompleto);
             statement.setString(2, direccion);
             statement.setString(3, telefono);
+            statement.setString(4, dui);
 
             // 00174323: Ejecuta la consulta de inserción y recarga la lista de clientes.
             statement.executeUpdate();
@@ -169,9 +181,9 @@ public class ClienteController implements Initializable {
         String nombreCompleto = txtNombreCompleto.getText();
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
-
+        String dui = txtDui.getText();
         // 00174323: Define la consulta SQL para actualizar un cliente.
-        String consultaSQL = "UPDATE Clientes SET nombreCompleto = ?, direccion = ?, telefono = ? WHERE id = ?";
+        String consultaSQL = "UPDATE Clientes SET nombreCompleto = ?, direccion = ?, telefono = ?, dui = ? WHERE id = ?";
         try (Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contrasena);
              PreparedStatement statement = conexion.prepareStatement(consultaSQL)) {
 
@@ -179,7 +191,8 @@ public class ClienteController implements Initializable {
             statement.setString(1, nombreCompleto);
             statement.setString(2, direccion);
             statement.setString(3, telefono);
-            statement.setInt(4, clienteSeleccionado.getId());
+            statement.setString(4, dui);
+            statement.setInt(5, clienteSeleccionado.getId());
 
             // 00174323: Ejecuta la consulta de actualización y recarga la lista de clientes.
             statement.executeUpdate();
@@ -223,6 +236,37 @@ public class ClienteController implements Initializable {
         } catch (SQLException e) {
             // 00174323: Muestra una alerta en caso de error al eliminar el cliente.
             mostrarAlerta("Error", "Error al eliminar cliente: " + e.getMessage());
+        }
+    }
+
+    // Método para buscar un cliente por Dui
+    private void buscarClientePorDui() {
+        String duiBuscado = txtBuscarDui.getText();
+        if (duiBuscado.isEmpty()) {
+            cargarClientes();
+            return;
+        }
+
+        String consultaSQL = "SELECT c.id, c.nombreCompleto, c.direccion, c.telefono, c.dui FROM Clientes c WHERE c.dui = ?";
+        try (Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contrasena);
+             PreparedStatement statement = conexion.prepareStatement(consultaSQL)) {
+
+            statement.setString(1, duiBuscado);
+            ResultSet resultado = statement.executeQuery();
+
+            listaClientes.clear();
+            while (resultado.next()) {
+                Cliente cliente = new Cliente(
+                        resultado.getInt("id"),
+                        resultado.getString("nombreCompleto"),
+                        resultado.getString("direccion"),
+                        resultado.getString("telefono"),
+                        resultado.getString("dui")
+                );
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            mostrarAlerta("Error", "Error al buscar cliente: " + e.getMessage());
         }
     }
 
