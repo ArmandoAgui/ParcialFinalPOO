@@ -22,8 +22,10 @@ public class ReportController implements Initializable { // 00174323: Definir la
     private Button btnGenerarD; // 00174323: Declaración del botón para generar reporte
 
     @FXML // 00174323: Anotación para inyectar el campo desde el archivo FXML
-    private ComboBox<String> idRepoC; // 00174323: Declaración del ComboBox para facilitadores
+    private ComboBox<String> idRepoC; // 00044123: Declaración del ComboBox para los datos Id y fecha de la compra
 
+    @FXML
+    private Button btnGenerarB; // 00044123: Declaración del botón para generar reporte B
 
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
     private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
@@ -33,6 +35,8 @@ public class ReportController implements Initializable { // 00174323: Definir la
     public void initialize(URL location, ResourceBundle resources) {
         btnGenerarD.setOnAction(event -> generarReporte()); // 00174323: Configura la acción del botón para generar el reporte
         cargarFacilitadores(); // 00174323: Llenar el ComboBox con facilitadores
+        btnGenerarB.setOnAction(event -> generarReporteB()); // 00044123: Configura la acción del botón para generar el reporte
+        cargarDatos(); // 00044123: Llenar el ComboBox con los datos Id y fecha
     }
 
     // 00174323: Método para cargar facilitadores desde la base de datos al ComboBox
@@ -123,11 +127,11 @@ public class ReportController implements Initializable { // 00174323: Definir la
                 ResultSet resultado = statement.executeQuery(consultaSQL) // 00174323: Ejecutar la consulta y obtener el resultado
         ) {
             while (resultado.next()) {
-                String id = resultado.getString("id"); // 00174323: Obtener el nombre del facilitador
-                Date fecha = resultado.getDate("fecha"); // 00174323: Obtener la fecha
-
-                idRepoC.getItems().add(id); // 00174323: Añadir el nombre del facilitador al ComboBox
-                idRepoC.getItems().add(fecha);
+                int id = resultado.getInt("id"); // 00174323: Obtener el ID del usuario
+                idRepoC.getItems().add(String.valueOf(id)); // 00044123: Añadir el ID del usuario al ComboBox
+                Time fecha = resultado.getTime("fecha"); // 00044123: Obtener la fecha de la transaccion
+                idRepoC.getItems().add(String.valueOf(fecha)); // 00044123: Añadir la fecha de transaccion al ComboBox
+                idRepoC.getItems().add(id + " - " + fecha); // 00044123: Añadir el ID y la fecha al ComboBox
             }
         } catch (SQLException e) {
             mostrarAlerta("Error", "Error al cargar facilitadores: " + e.getMessage()); // 00174323: Manejo de excepción en la consulta SQL
@@ -136,7 +140,7 @@ public class ReportController implements Initializable { // 00174323: Definir la
 
     private void generarReporteB (){
 
-        String facilitador = idRepoC.getSelectionModel().getSelectedItem(); // 00044123: Obtener el facilitador seleccionado del ComboBox
+        String datos = idRepoC.getSelectionModel().getSelectedItem(); // 00044123: Obtener el facilitador seleccionado del ComboBox
 
         String consultaSQL = "SELECT SUM(t.montoTotal) AS totalGastado " +
                 "FROM Transacciones t " +
@@ -148,9 +152,9 @@ public class ReportController implements Initializable { // 00174323: Definir la
                 Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contraseña); // 00044123: Establecer conexión a la base de datos
                 PreparedStatement statement = conexion.prepareStatement(consultaSQL); // 00044123: Preparar la declaración SQL
         ) {
-            statement.setString(1, id); // 00044123: Asignar el valor del ID al parámetro en la consulta preparada
-            statement.setInt(2, mes); // 00044123: Asignar el valor del mes al parámetro en la consulta preparada
-            statement.setInt(3,anio); // 00044123: Asignar el valor del año al parámetro en la consulta preparada
+            statement.setInt(1, id); // 00044123: Asignar el valor del ID al parámetro en la consulta preparada
+            statement.setInt(2, anio); // 00044123: Asignar el valor del mes al parámetro en la consulta preparada
+            statement.setInt(3, mes); // 00044123: Asignar el valor del año al parámetro en la consulta preparada
             ResultSet resultado = statement.executeQuery(); // 00044123: Ejecutar la consulta y obtener el resultado
 
             // 00044123: Crear la carpeta "Reporte" si no existe
@@ -166,16 +170,12 @@ public class ReportController implements Initializable { // 00174323: Definir la
 
                 // 00044123: Iterar sobre los resultados y escribir en el archivo
                 while (resultado.next()) {
-                    String cliente = resultado.getString("Cliente");
-                    int mesCompra = resultado.getInt("MesCompra");
-                    double totalGastado = resultado.getDouble("TotalGastado");
-
-                    // 00044123: Escribir cada línea en el archivo
-                    writer.write("Cliente: " + cliente + "\n");
-                    writer.write("Mes de compra: " + mesCompra + "\n");
-                    writer.write("Total gastado: $" + totalGastado + "\n\n");
+                    double totalGastado = resultado.getDouble("totalGastado");
+                    writer.write("Cliente ID: " + id + "\n"); // 00044123: Escribir ID del usuario
+                    writer.write("Mes de compra: " + mes + "\n"); // 00044123: Escribir mes de compra
+                    writer.write("Año de compra: " + anio + "\n"); // 00044123: Escribir año de compra
+                    writer.write("Total gastado: $" + totalGastado + "\n\n"); // 00044123: Escribir el total gastado
                 }
-                mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); // 00044123: Confirmación de escritura
             } catch (IOException e) { // 00044123: Manejo de excepción al escribir en el archivo
                 mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); // 00044123: Manejo de excepción al escribir en el archivo
             }
@@ -184,5 +184,3 @@ public class ReportController implements Initializable { // 00174323: Definir la
         }
     }
 }
-
-
