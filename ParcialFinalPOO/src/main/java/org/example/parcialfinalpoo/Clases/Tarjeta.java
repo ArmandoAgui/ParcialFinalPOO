@@ -5,17 +5,17 @@ public class Tarjeta {
     private String fechaExpiracion;
     private String tipo;
     private String facilitador;
-    private Cliente cliente;
+    private int idCliente;
 
-    public Tarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, String facilitador, Cliente cliente) {
+    public Tarjeta() {
+    }
+
+    public Tarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, String facilitador, int idCliente) {
         this.numeroTarjeta = numeroTarjeta;
         this.fechaExpiracion = fechaExpiracion;
         this.tipo = tipo;
         this.facilitador = facilitador;
-        this.cliente = cliente;
-    }
-
-    public Tarjeta() {
+        this.idCliente = idCliente;
     }
 
     public String getNumeroTarjeta() {
@@ -50,11 +50,11 @@ public class Tarjeta {
         this.facilitador = facilitador;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 }

@@ -47,47 +47,14 @@
             <TitledPane alignment="CENTER" expanded="false" layoutX="20.0" layoutY="10.0" prefHeight="400.0" prefWidth="300.0" text="Gestor de Tarjetas" textFill="#141e61" underline="true">
                <content>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                     <children>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Agregar tarjeta">
-                           <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Numero de tarjeta:" />
-                                    <TextField fx:id="numberCardField" />
-                                    <Label text="Fecha de expiracion:" />
-                                    <TextField fx:id="dateCardField" />
-                                    <Label text="Tipo:" />
-                                    <ComboBox fx:id="typeCardField" prefWidth="150.0" />
-                                    <Label layoutX="20.0" layoutY="106.0" text="Facilitador:" />
-                                    <ComboBox fx:id="companyCardField" layoutX="20.0" layoutY="124.0" prefWidth="150.0" />
-                                    <Label layoutX="20.0" layoutY="149.0" text="Cliente:" />
-                                    <TextField fx:id="clientCardField" layoutX="20.0" layoutY="167.0" />
-                                 </children>
-                              </VBox>
-                           </content>
-                        </TitledPane>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Eliminar tarjeta">
-                           <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="No. cuenta que desea eliminar:" />
-                                    <TextField fx:id="deletedNoCardText" />
-                                 </children>
-                              </VBox>
-                           </content>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </TitledPane>
-                        <TitledPane expanded="false" prefHeight="200.0" prefWidth="200.0" text="Modificar tarjeta">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </TitledPane>
-                     </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
+                     <children>
+                        <Button fx:id="btnUpdateCards" mnemonicParsing="false" onAction="#actualizarTarjeta" text="Gestion de Tarjetas" />
+                        <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" text="Gestion de Facilitador" />
+                        <Button layoutX="94.0" layoutY="56.0" mnemonicParsing="false" text="Gestion de Transacciones" />
+                     </children>
                   </VBox>
                </content>
             </TitledPane>
