@@ -30,7 +30,7 @@ public class TarjetasController implements Initializable {
     @FXML
     private TableColumn<Tarjeta, String> colTipo;
     @FXML
-    private TextField txtNoCompleto;
+    private TextField   txtNoCompleto;
     @FXML
     private ComboBox<String> comboBoxTipo;
     @FXML

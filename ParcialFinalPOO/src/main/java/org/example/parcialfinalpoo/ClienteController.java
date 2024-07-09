@@ -55,9 +55,10 @@ public class ClienteController implements Initializable {
     private Button btnBuscar;  //00174323: Botón para buscar a los clientes mediante el id.
 
     // 00174323: Define las constantes para la conexión a la base de datos.
-    private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal";  //00174323: URL de la base de datos.
-    private static final String usuario = "sa";  //00174323: Nombre de usuario de la base de datos.
-    private static final String contrasena = "12345678";  //00174323: Contraseña de la base de datos.
+    private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal";  // URL de la base de datos.
+    private static final String usuario = "sa";  // Nombre de usuario de la base de datos.
+    private static final String contrasena = "12345678";  // Contraseña de la base de datos.
+
 
     // 00174323: Define una lista observable para almacenar los clientes.
     private ObservableList<Cliente> listaClientes;
