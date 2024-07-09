@@ -24,8 +24,8 @@ CREATE TABLE Tarjetas (
                           tipo ENUM('Credito','Debito') NOT NULL,
                           facilitadorId INT,
                           clienteId INT,
-                          FOREIGN KEY (facilitadorId) REFERENCES Facilitadores(id),
-                          FOREIGN KEY (clienteId) REFERENCES Clientes(id)
+                          FOREIGN KEY (facilitadorId) REFERENCES Facilitadores(id) ON DELETE CASCADE,
+                          FOREIGN KEY (clienteId) REFERENCES Clientes(id) ON DELETE CASCADE
 );
 
 -- Tabla Transacciones
@@ -35,7 +35,7 @@ CREATE TABLE Transacciones (
                                montoTotal DECIMAL(10, 2) NOT NULL,
                                descripcion VARCHAR(255) NOT NULL,
                                tarjetaId INT,
-                               FOREIGN KEY (tarjetaId) REFERENCES Tarjetas(id)
+                               FOREIGN KEY (tarjetaId) REFERENCES Tarjetas(id) ON DELETE CASCADE
 );
 
 -- Inserción de datos en la tabla Facilitadores
@@ -123,10 +123,11 @@ SELECT c.nombreCompleto AS Cliente, c.direccion AS DireccionCliente, c.telefono 
 FROM Clientes c;
 
 -- Consulta de Tarjetas
-SELECT t.numeroTarjeta AS NumeroTarjeta, t.fechaExpiracion AS FechaExpiracion, t.tipo AS TipoTarjeta, f.nombre AS Facilitador, c.nombreCompleto AS Cliente
+SELECT t.id, t.numeroTarjeta AS NumeroTarjeta, t.fechaExpiracion AS FechaExpiracion, t.tipo AS TipoTarjeta, f.nombre AS Facilitador, c.nombreCompleto AS Cliente
 FROM Tarjetas t
          INNER JOIN Facilitadores f ON t.facilitadorId = f.id
-         INNER JOIN Clientes c ON t.clienteId = c.id;
+         INNER JOIN Clientes c ON t.clienteId = c.id
+         ORDER BY t.id ASC
 
 -- Consulta de Transacciones
 SELECT tr.fecha AS FechaTransaccion, tr.montoTotal AS MontoTotal, tr.descripcion AS Descripcion, t.numeroTarjeta AS NumeroTarjeta, f.nombre AS Facilitador, c.nombreCompleto AS Cliente
