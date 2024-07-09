@@ -46,8 +46,8 @@ public class ReportController implements Initializable { // 00174323: Definir la
     private TextField idClienteRepoC; //00116223 -> Se define un text field para el controlador.
 
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323: URL de la base de datos
-    private static final String usuario = "sa"; // 00174323: Usuario de la base de datos
-    private static final String contraseña = "12345678"; // 00174323: Contraseña de la base de datos
+    private static final String usuario = "root"; // 00174323: Usuario de la base de datos
+    private static final String contraseña = "root1234"; // 00174323: Contraseña de la base de datos
 
     @Override // 00174323: Método de inicialización del controlador
     public void initialize(URL location, ResourceBundle resources) {

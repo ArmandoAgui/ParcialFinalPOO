@@ -55,8 +55,8 @@ public class TarjetasController implements Initializable {
     private ObservableList<Tarjeta> listaTarjetas;
 
     private final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal";
-    private final String usuario = "sa";
-    private final String contrasena = "12345678";
+    private final String usuario = "root";
+    private final String contrasena = "root1234";
 
     public void initialize(URL location, ResourceBundle resources) {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -69,6 +69,8 @@ public class TarjetasController implements Initializable {
         listaTarjetas = FXCollections.observableArrayList();
         tblTarjetas.setItems(listaTarjetas);
 
+        cargarFacilitadores();
+        cargarTipos();
         cargarTarjetas();
 
         btnAgregar.setOnAction(event -> agregarTarjeta());
@@ -82,6 +84,28 @@ public class TarjetasController implements Initializable {
                 cargarDatosCliente(newValue);
             }
         });
+    }
+
+    private void cargarFacilitadores() {
+        String consultaSQL = "SELECT nombre FROM Facilitadores";
+
+        try (
+                Connection conexion = DriverManager.getConnection(jdbcUrl, usuario, contrasena);
+                Statement statement = conexion.createStatement();
+                ResultSet resultado = statement.executeQuery(consultaSQL)
+        ) {
+            while (resultado.next()) {
+                String nombreFacilitador = resultado.getString("nombre");
+                comboBoxFacilitador.getItems().add(nombreFacilitador);
+            }
+        } catch (SQLException e) {
+            mostrarAlerta("Error", "Error al cargar facilitadores: " + e.getMessage());
+        }
+    }
+
+    private void cargarTipos(){
+        comboBoxTipo.getItems().add("Credito");
+        comboBoxTipo.getItems().add("Debito");
     }
 
     private void cargarTarjetas() {
@@ -216,7 +240,7 @@ public class TarjetasController implements Initializable {
                         resultado.getString("clienteId"),
                         resultado.getString("numeroTarjeta"),
                         resultado.getString("Facilitador"),
-                        resultado.getString("fechaCaducidad"),
+                        resultado.getString("fechaExpiracion"),
                         resultado.getString("TipoTarjeta")
                 );
                 listaTarjetas.clear();
