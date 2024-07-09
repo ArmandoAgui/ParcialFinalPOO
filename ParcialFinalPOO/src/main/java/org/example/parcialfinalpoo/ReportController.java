@@ -287,7 +287,7 @@ public class ReportController implements Initializable { // 00174323: Definir la
             if (!carpetaReporte.exists()) {
                 carpetaReporte.mkdirs();
             }
-            String nombreArchivo = "Reporte C"; //00116223 -> Proceso de creacion del archivo donde se ingresara archivo txt.
+            String nombreArchivo = "Reporte C" + " - " + java.time.LocalDateTime.now().toString().replace(':', '-'); //00116223 -> Proceso de creacion del archivo donde se ingresara archivo txt.
 
             //00116223 -> Proceso de creacion del reporte, archivo txt.
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(carpetaReporte, nombreArchivo + ".txt")))) {
