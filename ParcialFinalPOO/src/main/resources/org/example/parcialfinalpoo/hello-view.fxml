@@ -52,7 +52,7 @@
                      </padding>
                      <children>
                         <Button fx:id="btnUpdateCards" mnemonicParsing="false" onAction="#actualizarTarjeta" text="Gestion de Tarjetas" />
-                        <Button layoutX="100.0" layoutY="31.0" mnemonicParsing="false" text="Gestion de Facilitador" />
+                        <Button fx:id="btnGestionFacilitador" layoutX="100.0" layoutY="31.0" mnemonicParsing="false" onAction="#gestionFacilitador" text="Gestion de Facilitador" />
                         <Button layoutX="94.0" layoutY="56.0" mnemonicParsing="false" text="Gestion de Transacciones" />
                      </children>
                   </VBox>

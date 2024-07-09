@@ -58,8 +58,8 @@ public class ClienteController implements Initializable {
 
     // 00174323: Define las constantes para la conexión a la base de datos.
     private static final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal";  // URL de la base de datos.
-    private static final String usuario = "root";  // Nombre de usuario de la base de datos.
-    private static final String contrasena = "root1234";  // Contraseña de la base de datos.
+    private static final String usuario = "sa";  // Nombre de usuario de la base de datos.
+    private static final String contrasena = "12345678";  // Contraseña de la base de datos.
 
     // 00174323: Define una lista observable para almacenar los clientes.
     private ObservableList<Cliente> listaClientes;

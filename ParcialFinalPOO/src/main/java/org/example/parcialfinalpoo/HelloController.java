@@ -40,4 +40,19 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void gestionFacilitador(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("facilitadores.fxml"));
+            Parent creditsRoot = loader.load();
+
+            Stage creditsStage = new Stage();
+            creditsStage.setTitle("Gestor de facilitadores");
+            creditsStage.setScene(new Scene(creditsRoot));
+            creditsStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -9,6 +9,6 @@ module org.example.parcialfinalpoo {
 
 
     opens org.example.parcialfinalpoo.Clases to javafx.base;
-    opens org.example.parcialfinalpoo to javafx.fxml;
     exports org.example.parcialfinalpoo;
+    opens org.example.parcialfinalpoo to javafx.base, javafx.fxml;
 }
