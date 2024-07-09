@@ -7,8 +7,7 @@ CREATE TABLE Clientes (
                           id INT AUTO_INCREMENT PRIMARY KEY,
                           nombreCompleto VARCHAR(255) NOT NULL,
                           direccion VARCHAR(255) NOT NULL,
-                          telefono VARCHAR(15) NOT NULL,
-                          dui VARCHAR(9) UNIQUE
+                          telefono VARCHAR(15) NOT NULL
 );
 
 -- Tabla Facilitadores
@@ -45,21 +44,21 @@ INSERT INTO Facilitadores (nombre) VALUES ('MasterCard');
 INSERT INTO Facilitadores (nombre) VALUES ('American Express');
 
 -- Inserción de datos en la tabla Clientes
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Juan Pérez', 'San Salvador', '2101-1234', '123456789');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('María López', 'Santa Ana', '2102-1234', '234567890');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Carlos Hernández', 'San Miguel', '2103-1234', '345678901');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Ana Martínez', 'Mejicanos', '2104-1234', '456789012');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Luis González', 'Soyapango', '2105-1234', '567890123');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Sofía Rodríguez', 'Apopa', '2106-1234', '678901234');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Ricardo Rivera', 'San Vicente', '2107-1234', '789012345');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Laura Díaz', 'Ahuachapán', '2108-1234', '890123456');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Pedro Ramos', 'Cojutepeque', '2109-1234', '901234567');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Elena Morales', 'Usulután', '2110-1234', '012345678');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Jorge Castillo', 'Chalatenango', '2111-1234', '112345678');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Natalia Guzmán', 'San Francisco Gotera', '2112-1234', '122345678');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Manuel Romero', 'Sonsonate', '2113-1234', '132345678');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Paula Flores', 'La Libertad', '2114-1234', '142345678');
-INSERT INTO Clientes (nombreCompleto, direccion, telefono, dui) VALUES ('Francisco Cruz', 'Zacatecoluca', '2115-1234', '152345678');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Juan Pérez', 'San Salvador', '2101-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('María López', 'Santa Ana', '2102-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Carlos Hernández', 'San Miguel', '2103-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Ana Martínez', 'Mejicanos', '2104-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Luis González', 'Soyapango', '2105-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Sofía Rodríguez', 'Apopa', '2106-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Ricardo Rivera', 'San Vicente', '2107-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Laura Díaz', 'Ahuachapán', '2108-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Pedro Ramos', 'Cojutepeque', '2109-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Elena Morales', 'Usulután', '2110-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Jorge Castillo', 'Chalatenango', '2111-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Natalia Guzmán', 'San Francisco Gotera', '2112-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Manuel Romero', 'Sonsonate', '2113-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Paula Flores', 'La Libertad', '2114-1234');
+INSERT INTO Clientes (nombreCompleto, direccion, telefono) VALUES ('Francisco Cruz', 'Zacatecoluca', '2115-1234');
 
 -- Inserción de datos en la tabla Tarjetas
 INSERT INTO Tarjetas (numeroTarjeta, fechaExpiracion, tipo, facilitadorId, clienteId) VALUES ('1234567890123456', '2025-05-01', 'Credito', 1, 1);
