@@ -116,7 +116,8 @@ public class ReportController implements Initializable { // 00174323: Definir la
                     writer.write("Cantidad de compras: " + cantidadCompras + "\n"); // 00174323: Escribir cantidad de transacciones
                     writer.write("Total gastado: $" + totalGastado + "\n\n"); // 00174323: Escribir total gastado
                 }
-
+                conexion.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
+                writer.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
                 mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); // 00174323: Confirmación de escritura
             } catch (IOException e) { // 00174323: Manejo de excepción al escribir en el archivo
                 mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); // 00174323: Manejo de excepción al escribir en el archivo
@@ -202,10 +203,12 @@ public class ReportController implements Initializable { // 00174323: Definir la
                         bufferedWriter.write("Tipo: " + tipo + "\n");//00144723 - Se escribe el tipo de tarjeta
                         bufferedWriter.write("Facilitador: " + Facilitador + "\n");//00144723 - Se escribe el facilitador
                     }
+                    bufferedWriter.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
+                    conn.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
                 } catch (IOException i) {
                     mostrarAlerta("Error", "Error al escribir en el archivo: " + i.getMessage()); //00144723 - Se muestra una alerta si se generá un error
                 }
-                conn.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
+
 
 
             } catch (Exception e) {
@@ -260,6 +263,8 @@ public class ReportController implements Initializable { // 00174323: Definir la
                     writer.write("Total gastado: $" + totalGastado + "\n");
                     writer.write("Mes: " + nombreMes + "\n\n");
                 }
+                writer.close();  //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
+                conexion.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
                 mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); // 00044123: Confirmación de escritura
             } catch (IOException e) { // 00044123: Manejo de excepción al escribir en el archivo
                 mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); // 00044123: Manejo de excepción al escribir en el archivo
@@ -270,43 +275,43 @@ public class ReportController implements Initializable { // 00174323: Definir la
     }
 
     @FXML
-    private void generarReporteC(){
-        String idReporteC = idClienteRepoC.getText(); //00116223 -> Se obtiene los valores que se introdujeron dentro del reporte C
+    private void generarReporteC() {
+        String idReporteC = idClienteRepoC.getText(); //00116223 -> Se obtiene el valor ingresado por el usuario
         String consultaSQL =
                 "SELECT CONCAT(REPEAT('X', 12), SUBSTRING(t.numeroTarjeta, 13, 4)) AS NumeroTarjeta, t.tipo AS TipoTarjeta, c.nombreCompleto AS Cliente " +
-                        "FROM Tarjetas t INNER JOIN Clientes c ON t.clienteId = c.id WHERE c.id = ?;"; //00116223 -> Se define la query que se utilizara dentro del reporte C
+                        "FROM Tarjetas t INNER JOIN Clientes c ON t.clienteId = c.id WHERE c.id = ?;"; //00116223 -> Definición de la consulta SQL
 
         try {
-            Connection conn = DriverManager.getConnection(jdbcUrl,usuario,contraseña); //00116223 -> Proceso de conexion a la base de datos.
-            PreparedStatement ps = conn.prepareStatement(consultaSQL); //00116223 -> Proceso de conexion a la base de datos. Parametro "consultaSQL" es la query anteriormente definidad.
+            Connection conn = DriverManager.getConnection(jdbcUrl, usuario, contraseña); //00116223 -> Conexión a la base de datos
+            PreparedStatement ps = conn.prepareStatement(consultaSQL); //00116223 -> Preparación de la consulta SQL
+            ps.setString(1, idReporteC); //00116223 -> Establecer el parámetro de la consulta
+            ResultSet rs = ps.executeQuery(); //00116223 -> Ejecución de la consulta
 
-            ps.setString(1, idReporteC); //00116223 -> En el ingreso del id que el usuario ingresa dentro de la consulta.
-            ResultSet rs = ps.executeQuery(); //00116223 -> Proceso de conexion a la base de datos. Ejecuta la consulta
-
-            File carpetaReporte = new File("Reporte"); //00116223 -> Proceso de creacion del reporte, archivo txt.
+            File carpetaReporte = new File("Reporte"); //00116223 -> Creación de la carpeta para el reporte
             if (!carpetaReporte.exists()) {
                 carpetaReporte.mkdirs();
             }
-            String nombreArchivo = "Reporte C" + " - " + java.time.LocalDateTime.now().toString().replace(':', '-'); //00116223 -> Proceso de creacion del archivo donde se ingresara archivo txt.
+            String nombreArchivo = "Reporte C" + " - " + java.time.LocalDateTime.now().toString().replace(':', '-'); //00116223 -> Nombre del archivo de reporte
 
-            //00116223 -> Proceso de creacion del reporte, archivo txt.
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(carpetaReporte, nombreArchivo + ".txt")))) {
                 writer.write("Reporte de las tarjetas de credito/debito de cliente en especifico. " + "\n\n");
 
                 while (rs.next()) {
-                    String tipoTarjeta = rs.getString("TipoTarjeta"); //00116223 -> Presentacion de la consulta dentro del programa.
-                    String numeroTarjeta = rs.getString("numeroTarjeta"); //00116223 -> Presentacion de la consulta dentro del programa.
+                    String tipoTarjeta = rs.getString("TipoTarjeta"); //00116223 -> Obtención del tipo de tarjeta
+                    String numeroTarjeta = rs.getString("NumeroTarjeta"); //00116223 -> Obtención del número de tarjeta
 
-                    // 00044123: Escribir cada línea en el archivo
-                    writer.write("Tipo de tarjeta: " + tipoTarjeta + "\n"); //00116223 -> Ingreso de datos de la consulta dentro del archivo txt.
-                    writer.write("No. Tarjeta: " + numeroTarjeta + "\n"); //00116223 -> Ingreso de datos de la consulta dentro del archivo txt.
+                    writer.write("Tipo de tarjeta: " + tipoTarjeta + "\n"); //00116223 -> Escritura del tipo de tarjeta en el archivo
+                    writer.write("No. Tarjeta: " + numeroTarjeta + "\n\n"); //00116223 -> Escritura del número de tarjeta en el archivo
                 }
-                mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); //00116223 -> Confirmación de escritura
-            } catch (IOException e) { // 00044123: Manejo de excepción al escribir en el archivo
-                mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); //00116223 -> Manejo de excepción al escribir en el archivo
+                writer.close();  //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
+                mostrarAlerta("Reporte generado", "El reporte se ha generado correctamente en el archivo " + nombreArchivo + ".txt"); //00116223 -> Confirmación de generación del reporte
+            } catch (IOException e) { //00116223 -> Manejo de excepción al escribir en el archivo
+                mostrarAlerta("Error", "Error al escribir en el archivo: " + e.getMessage()); //00116223 -> Mensaje de error al escribir en el archivo
             }
+            conn.close(); //00144723 - Como toda buena practica de un estudiante UCA se cierra la conexion
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            mostrarAlerta("Error", "Error en la base de datos: " + e.getMessage()); //00116223 -> Manejo de excepción al conectarse a la base de datos
+            throw new RuntimeException(e); //00116223 -> Lanza una excepción en caso de error
         }
     }
 
