@@ -48,8 +48,8 @@ public class TransaccionController implements Initializable { // 00174323 - Defi
     private ObservableList<Transaccion> listaTransacciones; // 00174323 - Declara una lista observable para almacenar transacciones
 
     private final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00174323 - URL de conexión a la base de datos MySQL
-    private final String usuario = "sa"; // 00174323 - Nombre de usuario para la conexión a la base de datos
-    private final String contrasena = "12345678"; // 00174323 - Contraseña para la conexión a la base de datos
+    private final String usuario = "root"; // 00174323 - Nombre de usuario para la conexión a la base de datos
+    private final String contrasena = "root1234"; // 00174323 - Contraseña para la conexión a la base de datos
 
     @Override // 00174323 - Anotación para indicar que este método sobrescribe uno en la superclase
     public void initialize(URL location, ResourceBundle resources) { // 00174323 - Método inicializador que se llama después de cargar el FXML
