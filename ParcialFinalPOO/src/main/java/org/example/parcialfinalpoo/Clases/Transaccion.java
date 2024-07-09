@@ -3,26 +3,33 @@ package org.example.parcialfinalpoo.Clases;
 import java.sql.Date;
 
 public class Transaccion {
-    private Date fecha;
+    private int id;
+    private String fecha;
     private double montoTotal;
     private String descripcion;
-    private Tarjeta tarjeta;
+    private int tarjetaId;
 
-    public Transaccion(Date fecha, double montoTotal, String descripcion, Tarjeta tarjeta) {
+    public Transaccion(int id, String fecha, double montoTotal, String descripcion, int tarjetaId) {
+        this.id = id;
         this.fecha = fecha;
         this.montoTotal = montoTotal;
         this.descripcion = descripcion;
-        this.tarjeta = tarjeta;
+        this.tarjetaId = tarjetaId;
     }
 
-    public Transaccion() {
+    public int getId() {
+        return id;
     }
 
-    public Date getFecha() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -42,11 +49,11 @@ public class Transaccion {
         this.descripcion = descripcion;
     }
 
-    public Tarjeta getTarjeta() {
-        return tarjeta;
+    public int getTarjetaId() {
+        return tarjetaId;
     }
 
-    public void setTarjeta(Tarjeta tarjeta) {
-        this.tarjeta = tarjeta;
+    public void setTarjetaId(int tarjetaId) {
+        this.tarjetaId = tarjetaId;
     }
 }

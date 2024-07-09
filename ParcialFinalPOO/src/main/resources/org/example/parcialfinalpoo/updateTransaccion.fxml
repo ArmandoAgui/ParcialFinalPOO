@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.parcialfinalpoo.TransaccionController">
+    <children>
+        <GridPane fx:id="gridPane" alignment="TOP_CENTER" hgap="10.0" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="600.0" vgap="10.0">
+            <!-- Campos para las transacciones -->
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="570.0" GridPane.rowIndex="1">
+                <children>
+                    <Label text="Tarjeta ID" />
+                    <TextField fx:id="txtTarjetaId">
+                        <HBox.margin>
+                            <Insets left="17.0" />
+                        </HBox.margin>
+                    </TextField>
+                </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="570.0" GridPane.rowIndex="2">
+                <children>
+                    <Label text="Fecha" />
+                    <TextField fx:id="txtFecha">
+                        <HBox.margin>
+                            <Insets left="17.0" />
+                        </HBox.margin>
+                    </TextField>
+                </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="570.0" GridPane.rowIndex="3">
+                <children>
+                    <Label text="Monto" />
+                    <TextField fx:id="txtMonto">
+                        <HBox.margin>
+                            <Insets left="17.0" />
+                        </HBox.margin>
+                    </TextField>
+                </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="570.0" GridPane.rowIndex="4">
+                <children>
+                    <Label text="Descripción" />
+                    <TextField fx:id="txtDescripcion">
+                        <HBox.margin>
+                            <Insets left="17.0" />
+                        </HBox.margin>
+                    </TextField>
+                </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                <Button fx:id="btnAgregarTransaccion" text="Agregar" />
+                <Button fx:id="btnActualizarTransaccion" disable="true" text="Actualizar" />
+                <Button fx:id="btnEliminarTransaccion" disable="true" text="Eliminar" />
+                <Button fx:id="btnLimpiarTransaccion" text="Limpiar" />
+            </HBox>
+            <TableView fx:id="tblTransacciones" prefHeight="223.0" prefWidth="388.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                    <TableColumn fx:id="colTarjetaId" prefWidth="100.0" text="Tarjeta ID" />
+                    <TableColumn fx:id="colFecha" prefWidth="100.0" text="Fecha" />
+                    <TableColumn fx:id="colMonto" prefWidth="100.0" text="Monto" />
+                    <TableColumn fx:id="colDescripcion" prefWidth="100.0" text="Descripción" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+        </GridPane>
+    </children>
+</AnchorPane>

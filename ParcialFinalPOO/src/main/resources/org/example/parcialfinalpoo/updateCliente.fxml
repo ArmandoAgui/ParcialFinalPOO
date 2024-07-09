@@ -15,28 +15,17 @@
                 <Button fx:id="btnLimpiar" text="Limpiar" />
             </HBox>
             <HBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                <TextField fx:id="txtBuscarDui" prefHeight="26.0" prefWidth="207.0" promptText="Buscar por DUI" />
+                <TextField fx:id="txtBuscarId" prefHeight="26.0" prefWidth="207.0" promptText="Buscar por Id" />
                 <Button fx:id="btnBuscar" text="Buscar" />
             </HBox>
             <TableView fx:id="tblClientes" prefHeight="227.0" prefWidth="570.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
                 <columns>
-                    <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
-                    <TableColumn fx:id="colNombreCompleto" prefWidth="150.0" text="Nombre Completo" />
-                    <TableColumn fx:id="colDireccion" prefWidth="130.0" text="Dirección" />
-                    <TableColumn fx:id="colTelefono" prefWidth="120.0" text="Teléfono" />
-                    <TableColumn fx:id="colDui" prefWidth="120.0" text="Dui" />
+                    <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                    <TableColumn fx:id="colNombreCompleto" prefWidth="170.0" text="Nombre Completo" />
+                    <TableColumn fx:id="colDireccion" prefWidth="170.0" text="Dirección" />
+                    <TableColumn fx:id="colTelefono" prefWidth="170.0" text="Teléfono" />
                 </columns>
             </TableView>
-         <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="500.0" GridPane.rowIndex="2">
-            <children>
-               <Label text="Telefono" />
-                  <TextField fx:id="txtTelefono" prefHeight="26.0" prefWidth="388.0">
-                  <HBox.margin>
-                     <Insets left="58.0" />
-                  </HBox.margin>
-               </TextField>
-            </children>
-         </HBox>
          <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="570.0">
             <children>
                <Label text="Nombre Completo" />
@@ -59,10 +48,10 @@
          </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="570.0" GridPane.rowIndex="3">
                 <children>
-                    <Label text="Dui" />
-                    <TextField fx:id="txtDui" prefHeight="26.0" prefWidth="385.0">
+                    <Label text="Telefono" />
+                    <TextField fx:id="txtTelefono" prefHeight="26.0" prefWidth="385.0">
                         <HBox.margin>
-                            <Insets left="85.0" />
+                            <Insets left="60.0" />
                         </HBox.margin>
                     </TextField>
                 </children>

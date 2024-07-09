@@ -5,14 +5,12 @@ public class Cliente {
     private String nombreCompleto;
     private String direccion;
     private String telefono;
-    private String dui;
 
-    public Cliente(int id, String nombreCompleto, String direccion, String telefono, String dui) {
+    public Cliente(int id, String nombreCompleto, String direccion, String telefono) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.dui = dui;
     }
 
     public Cliente() {
@@ -34,12 +32,4 @@ public class Cliente {
 
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
-
-    public String getDui() {
-        return dui;
-    }
-
-    public void setDui(String dui) {
-        this.dui = dui;
-    }
 }

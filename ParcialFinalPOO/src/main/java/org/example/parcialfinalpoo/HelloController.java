@@ -41,7 +41,8 @@ public class HelloController {
         }
     }
 
-    @FXML
+
+   @FXML
     void gestionFacilitador(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("facilitadores.fxml"));
@@ -49,6 +50,20 @@ public class HelloController {
 
             Stage creditsStage = new Stage();
             creditsStage.setTitle("Gestor de facilitadores");
+            creditsStage.setScene(new Scene(creditsRoot));
+            creditsStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void actualizarTransaccion(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("updateTransaccion.fxml"));
+            Parent creditsRoot = loader.load();
+
+            Stage creditsStage = new Stage();
+            creditsStage.setTitle("Transaccion");
             creditsStage.setScene(new Scene(creditsRoot));
             creditsStage.show();
         } catch (IOException e) {
