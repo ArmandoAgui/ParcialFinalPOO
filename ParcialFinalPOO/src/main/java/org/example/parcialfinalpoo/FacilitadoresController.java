@@ -54,6 +54,10 @@ public class FacilitadoresController implements Initializable {
     // 00144723 - Lista observable de facilitadores
     private ObservableList<Facilitador> listaFacilitadores;
 
+    private final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal"; // 00144723 URL de conexión a la base de datos MySQL
+    private final String usuario = "root"; // 00144723 Nombre de usuario para la conexión a la base de datos
+    private final String contrasena = "root1234"; // 00144723 Contraseña para la conexión a la base de datos
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // 00144723 - Configuración de la columna ID
@@ -101,9 +105,9 @@ public class FacilitadoresController implements Initializable {
         try {
             // 00144723 - Establecimiento de conexión con la base de datos
             Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/parcialFinal",
-                    "sa",
-                    "12345678"
+                    jdbcUrl,
+                    usuario,
+                    contrasena
             );
             // 00144723 - Preparación de la consulta SQL
             PreparedStatement ps = conn.prepareStatement(query);
@@ -149,9 +153,9 @@ public class FacilitadoresController implements Initializable {
         try {
             // 00144723 - Establecimiento de conexión con la base de datos
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/parcialFinal",
-                    "sa",
-                    "12345678"
+                    jdbcUrl,
+                    usuario,
+                    contrasena
             );
             // 00144723 - Preparación de la consulta SQL
             PreparedStatement ps = connection.prepareStatement(query);
@@ -192,9 +196,9 @@ public class FacilitadoresController implements Initializable {
         try {
             // 00144723 - Establecimiento de conexión con la base de datos
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/parcialFinal",
-                    "sa",
-                    "12345678"
+                    jdbcUrl,
+                    usuario,
+                    contrasena
             );
             // 00144723 - Preparación de la consulta SQL
             PreparedStatement ps = connection.prepareStatement(query);
@@ -247,9 +251,9 @@ public class FacilitadoresController implements Initializable {
         try {
             // 00144723 - Establecimiento de conexión con la base de datos
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/parcialFinal",
-                    "sa",
-                    "12345678"
+                    jdbcUrl,
+                    usuario,
+                    contrasena
             );
             // 00144723 - Preparación de la consulta SQL
             PreparedStatement ps = connection.prepareStatement(query);
