@@ -40,4 +40,17 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+    public void actualizarTransaccion(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("updateTransaccion.fxml"));
+            Parent creditsRoot = loader.load();
+
+            Stage creditsStage = new Stage();
+            creditsStage.setTitle("Transaccion");
+            creditsStage.setScene(new Scene(creditsRoot));
+            creditsStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -55,8 +55,8 @@ public class TarjetasController implements Initializable {
     private ObservableList<Tarjeta> listaTarjetas;
 
     private final String jdbcUrl = "jdbc:mysql://localhost:3306/parcialFinal";
-    private final String usuario = "root";
-    private final String contrasena = "root1234";
+    private final String usuario = "sa";
+    private final String contrasena = "12345678";
 
     public void initialize(URL location, ResourceBundle resources) {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
